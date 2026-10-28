@@ -156,6 +156,15 @@ a.aff:hover .aff-arr{color:var(--fg)}
 @media (max-width:980px){.aff-grid.six{grid-template-columns:repeat(3,minmax(0,1fr))}.aff-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.aff-grid.six,.aff-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.aff{min-height:100px;padding:14px}.aff-big{font-size:22px}.aff-name{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.aff{transition:none}}
+.channels .btn{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:var(--panel);box-shadow:0 0 16px rgba(255,255,255,.06),0 0 44px rgba(255,255,255,.04),inset 0 1px 0 rgba(255,255,255,.12);transition:box-shadow .3s,border-color .3s}
+.channels .btn:hover{border-color:rgba(255,255,255,.36);box-shadow:0 0 22px rgba(255,255,255,.12),0 0 60px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.2)}
+.days{display:none}
+.days button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0 9px;border-radius:12px;border:1.5px solid rgba(255,255,255,.22);background:var(--panel);color:var(--fg);cursor:pointer;font-family:var(--f-body)}
+.days button b{font-size:17px;font-weight:700}
+.days button span{font-size:11px;color:var(--mute);white-space:nowrap}
+.days button[aria-selected="true"]{background:#fff;color:var(--ink);border-color:#fff;box-shadow:0 0 20px rgba(255,255,255,.3)}
+.days button[aria-selected="true"] span{color:#3a3f4b}
+.days button:disabled{opacity:.3;cursor:default}
 /* 화면 끝 다음 버튼 */
 .next-nav{padding-block:40px 64px}
 .next-in{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px}
@@ -461,11 +470,20 @@ footer b{color:var(--fg)}
   .cta-row{padding-bottom:40px}
   section.block{padding-block:72px}
   .ph-grid,.winter,.career,.yt{grid-template-columns:minmax(0,1fr)}
-  .tt{grid-template-columns:minmax(0,1fr)}
+  .tt{grid-template-columns:minmax(0,1fr);margin-top:14px}
   .tt-h,.tt-r,.cell.empty{display:none}
-  .cell{order:var(--ord);min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:baseline}
-  .cell .day{display:block;grid-row:span 4;font-weight:700;font-size:15px;width:40px}
-  .cell .ty{padding-top:2px}
+  .cell{order:var(--ord);min-height:0;display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:center;padding:16px 18px}
+  .cell .day{display:none}
+  .cell .tm{grid-column:1;grid-row:1;margin-top:0;font-size:24px}
+  .cell .to{grid-column:1;grid-row:2}
+  .cell .br{grid-column:2;grid-row:1;font-size:14px}
+  .cell .ty{grid-column:2;grid-row:2;padding-top:0;margin-top:0}
+  .cell.off{display:none}
+  .tt[data-day="0"] .cell[data-d]:not([data-d="0"]),.tt[data-day="1"] .cell[data-d]:not([data-d="1"]),.tt[data-day="2"] .cell[data-d]:not([data-d="2"]),.tt[data-day="3"] .cell[data-d]:not([data-d="3"]),.tt[data-day="4"] .cell[data-d]:not([data-d="4"]){display:none}
+  .days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:16px}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:calc(-1 * max(20px,env(safe-area-inset-right,0px)));padding-right:20px}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none}
   .improve li{grid-template-columns:minmax(0,1fr);gap:4px}
 }
 @media (max-width:520px){
@@ -498,8 +516,8 @@ footer b{color:var(--fg)}
     <canvas id="prism" role="img" aria-label="검은 16:30 글자 뒤에서 빛이 새어 나와 무지개빛 후광과 빛줄기가 퍼지는 그래픽"></canvas>
     <div class="fallback" aria-hidden="true">16:30</div>
     <div class="hud wrap" aria-hidden="true">
-      <div class="hud-top"><span class="clock" id="clock" aria-live="off"><b class="ck-time"><span class="ck-h">--</span><span class="ck-colon">:</span><span class="ck-m">--</span></b><span class="ck-msg">오늘의 16:30까지</span></span><span>λ 380 – 750 nm · 2028 INTEGRATED SCIENCE</span></div>
-      <div class="hud-bot"><span>수능 과학탐구가 시작되는 시간. 매일의 16:30이 모여 수능 날의 16:30으로 이어지도록.</span><a class="hud-cta" href="#about"><b>박건수 통합과학</b><span>강사 소개 보기 →</span></a></div>
+      <div class="hud-top"><span class="clock" id="clock" aria-live="off"><b class="ck-time"><span class="ck-h">--</span><span class="ck-colon">:</span><span class="ck-m">--</span></b><span class="ck-msg">오늘의 16:30까지</span></span><span>2028 INTEGRATED SCIENCE</span></div>
+      <div class="hud-bot"><span>수능 과학탐구가 시작되는 시간. 매일의 16:30이 모여 수능 날의 16:30으로 이어지도록.</span></div>
     </div>
   </div>
 
@@ -515,16 +533,16 @@ footer b{color:var(--fg)}
   <div class="marquee" aria-label="수강 후기">
     <div class="track">
       <div class="set">
-        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
-        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 박건수T가 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>박건수T가 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
         <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
         <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
         <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
         <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
       </div>
       <div class="set" aria-hidden="true">
-        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
-        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 박건수T가 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>박건수T가 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
         <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
         <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
         <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
@@ -672,7 +690,7 @@ footer b{color:var(--fg)}
         <li><h3>주간 복습 테스트</h3><ul><li>개념 복습 테스트</li><li>무제한 재시험</li><li>학생별 과제 오답노트</li></ul></li>
         <li><h3>수업 피드백</h3><ul><li>테스트·과제 결과</li><li>누적 성취도·약점</li><li>수업 후 문자 발송</li></ul></li>
         <li><h3>질의응답</h3><ul><li>수업 전후 질의응답</li><li>온라인 실시간 질문</li></ul></li>
-        <li><h3>온라인 콘텐츠</h3><ul><li>개인 홈페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
+        <li><h3>온라인 콘텐츠</h3><ul><li>디디쌤 개인 영상 페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
       </ul>
     <div class="yt-in">
       <div class="sec-head">
@@ -750,7 +768,7 @@ footer b{color:var(--fg)}
       <details><summary>학교에서 통합과학을 배웠는데, 수능 대비를 따로 해야 하나요?</summary><p>학교 내신은 정해진 범위 안에서 출제되지만, 수능은 여러 단원을 연결해 묻는 문항이 많습니다. LEVEL UP에서 배운 개념을 수능 출제자의 관점으로 다시 엮고, SKILL UP부터 연결 훈련을 이어 갑니다.</p></details>
       <details><summary>기출이 없는데 무엇으로 연습하나요?</summary><p>박건수T가 연구소와 출제팀에서 직접 만든 문항으로 연습합니다. 자체 N제, 극딜 모의고사 S1~S4 16회분, MAikers 모의고사 16회분, 월간지 RAID 10권, 그리고 평가원 모의평가 직후 나오는 분석서 UPDATE가 1년 동안 이어집니다.</p></details>
       <details><summary>N수생인데 통합과학을 처음 공부해도 괜찮을까요?</summary><p>네. 2028 수능 통합과학은 모든 수험생에게 처음 치르는 시험입니다. LEVEL UP은 개념을 이해하는 단계부터 시작합니다. 매주 개념 복습 테스트를 보고, 통과할 때까지 재시험을 무제한으로 볼 수 있어 빈틈을 남기지 않습니다.</p></details>
-      <details><summary>결석하면 수업을 어떻게 따라가나요?</summary><p>개인 홈페이지에 복습 영상과 추가 강의 영상이 올라갑니다. 결석한 주의 내용도 영상과 과제로 따라올 수 있습니다.</p></details>
+      <details><summary>결석하면 수업을 어떻게 따라가나요?</summary><p>디디쌤을 이용한 개인 영상 페이지에 복습 영상과 추가 강의 영상이 올라갑니다. 결석한 주의 내용도 영상과 과제로 따라올 수 있습니다.</p></details>
       <details><summary>학부모는 학습 상황을 어떻게 확인하나요?</summary><p>수업이 끝나면 테스트와 과제 결과, 누적 성취도와 약점을 문자로 보내 드립니다. 주기적인 학생 상담 내용도 함께 공유합니다.</p></details>
       <details><summary>질문은 언제, 어떻게 할 수 있나요?</summary><p>수업 전후에 직접 질문할 수 있고, 수업 밖에서는 온라인으로 실시간 질문을 받습니다.</p></details>
       <details><summary>수강 신청과 상담은 어디로 하면 되나요?</summary><p>다니실 학원으로 바로 문의해 주세요. 수강 상담 메뉴에 학원별 연락처를 정리해 두었습니다.</p></details>
@@ -925,10 +943,25 @@ footer b{color:var(--fg)}
     days.forEach(function(d,di){
       var s=S.filter(function(x){return x.d===di&&x.p===pi;})[0];
       if(!s){h+='<div class="cell empty" aria-hidden="true"></div>';return;}
-      h+='<div class="cell '+s.k+'" data-b="'+s.b+'" style="--ord:'+(di*3+pi)+'"><span class="day">'+d[0]+'</span><span class="br">'+s.b+'</span><span class="tm">'+s.t+'</span><span class="to">~ '+s.e+'</span><span class="ty">'+s.ty+'</span></div>';
+      h+='<div class="cell '+s.k+'" data-b="'+s.b+'" data-d="'+di+'" style="--ord:'+(di*3+pi)+'"><span class="day">'+d[0]+'</span><span class="br">'+s.b+'</span><span class="tm">'+s.t+'</span><span class="to">~ '+s.e+'</span><span class="ty">'+s.ty+'</span></div>';
     });
   });
   tt.innerHTML=h;
+  // 휴대폰용 요일 탭
+  var dayBar=document.createElement('div'); dayBar.className='days'; dayBar.setAttribute('role','tablist'); dayBar.setAttribute('aria-label','요일 선택');
+  dayBar.innerHTML=days.map(function(d,i){var n=S.filter(function(x){return x.d===i;}).length;return '<button type="button" role="tab" data-d="'+i+'"><b>'+d[0]+'</b><span>'+n+'개 반</span></button>';}).join('');
+  tt.parentNode.insertBefore(dayBar,tt);
+  var curDay=0, curBr='전체';
+  try{var wd=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',weekday:'short'}).format(new Date());curDay={Wed:0,Thu:1,Fri:2,Sat:3,Sun:4}[wd];if(curDay===undefined)curDay=0;}catch(e){curDay=0;}
+  function counts(){var c=[0,0,0,0,0];S.forEach(function(x){if(curBr==='전체'||x.b===curBr)c[x.d]++;});return c;}
+  function setDay(i){
+    var c=counts();
+    if(!c[i]){for(var k=0;k<5;k++){if(c[k]){i=k;break;}}}
+    curDay=i; tt.setAttribute('data-day',i);
+    dayBar.querySelectorAll('button').forEach(function(b,k){b.setAttribute('aria-selected',String(k===i));b.disabled=!c[k];b.querySelector('span').textContent=c[k]?c[k]+'개 반':'수업 없음';});
+  }
+  dayBar.addEventListener('click',function(e){var b=e.target.closest('button');if(b&&!b.disabled)setDay(+b.getAttribute('data-d'));});
+  setDay(curDay);
   var names=['전체','1630 산본','러셀 목동','러셀 영통','러셀 부천','해냄 평촌','온율 덕소'];
   var f=document.getElementById('filters');
   f.innerHTML=names.map(function(n,i){return '<button type="button" id="f'+i+'" aria-pressed="'+(i===0)+'">'+n+'</button>';}).join('');
@@ -937,6 +970,7 @@ footer b{color:var(--fg)}
     var n=btn.textContent;
     f.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===btn));});
     tt.querySelectorAll('.cell[data-b]').forEach(function(c){c.classList.toggle('off',n!=='전체'&&c.dataset.b!==n);});
+    curBr=n; setDay(curDay);
   });
 })();
 
