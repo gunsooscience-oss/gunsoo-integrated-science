@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>박건수 통합과학</title>
+<meta name="description" content="생각의 속도, 과학의 속도. 기출이 없는 첫 수능 통합과학, 문항을 직접 연구하고 만드는 박건수가 개념부터 실전까지 1년을 설계합니다.">
+<meta name="theme-color" content="#08090c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="박건수 통합과학 · 과학하는 박건수">
+<meta property="og:description" content="생각의 속도, 과학의 속도. 2028 수능 통합과학, 개념부터 실전까지.">
+<meta property="og:image" content="https://pgsscience.co.kr/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://pgsscience.co.kr/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://pgsscience.co.kr/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308090c'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='22' text-anchor='middle' fill='%23ffffff'%3E16:30%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap">
+<style>
+/* Layout: 어두운 실험실 화면. 히어로는 16:30 글자 프리즘이 빛을 분산시키는 WebGL 무대, 아래 섹션은 넓은 여백의 단일 칼럼 + 카드 그리드 */
+:root{
+  --ink:#08090c;
+  --panel:#101218;
+  --panel-2:#171a23;
+  --line:#262b37;
+  --fg:#eef0f5;
+  --mute:#a0a6b3;
+  --dim:#6d7482;
+  --sun:#ffd43b;
+  --sun-ink:#1d1700;
+  --sky:#a3ceff;
+  --sky-ink:#06192d;
+  --need:#ffb02e;
+  --spec:linear-gradient(90deg,#ff5a5a 0%,#ffa024 18%,#ffe14a 34%,#48d483 52%,#36b9f2 68%,#5b6cf0 84%,#a35cf5 100%);
+  --f-disp:"Unbounded","IBM Plex Sans KR",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --radius:14px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;font-style:normal}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--ink);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:inherit}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:700;line-height:1.25;letter-spacing:-0.02em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.wrap{width:100%;max-width:1160px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:6px}
+
+/* 자료 필요 표시 */
+.need{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--f-mono);letter-spacing:.02em;color:var(--need);border:1px dashed var(--need);border-radius:999px;padding:5px 9px;vertical-align:middle;white-space:nowrap}
+.need::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--need)}
+.hide-need .need{display:none}
+.hide-need .ph{border-style:solid;border-color:var(--line)}
+
+/* 내비게이션 */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--ink) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;white-space:nowrap}
+.brand-mark{font:800 13px/1 var(--f-disp);padding:6px 8px;border-radius:7px;background:var(--fg);color:var(--ink)}
+.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.links::-webkit-scrollbar{display:none}
+.links a{text-decoration:none;color:var(--mute);font-size:14px;padding:8px 10px;border-radius:8px;white-space:nowrap}
+.links a:hover{color:var(--fg);background:var(--panel-2)}
+.need-toggle{font:500 12px/1 var(--f-mono);color:var(--need);background:transparent;border:1px dashed var(--need);border-radius:999px;padding:8px 10px;cursor:pointer;white-space:nowrap}
+.need-toggle[aria-pressed="false"]{color:var(--dim);border-color:var(--line)}
+.nav-cta{text-decoration:none;font-weight:600;font-size:14px;background:var(--sun);color:var(--sun-ink);padding:9px 14px;border-radius:9px;white-space:nowrap}
+
+/* 히어로 */
+.stage{position:relative;height:clamp(360px,44vw,560px);overflow:hidden;background:#06070a;border-bottom:1px solid var(--line);touch-action:pan-y}
+#prism{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fallback{display:none;position:absolute;inset:0;place-items:center;font:800 clamp(80px,20vw,260px)/1 var(--f-disp);color:#050507;text-shadow:-3px 0 14px #ff5a5a,3px 0 14px #36b9f2,0 0 48px rgba(255,240,210,.55)}
+.no-gl .fallback{display:grid}
+.no-gl #prism{display:none}
+.hud{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding-block:18px;pointer-events:none;font:400 12px/1.5 var(--f-mono);color:#8b92a1;letter-spacing:.04em}
+.hud-top,.hud-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hud-bot .hint{color:#c9ceda}
+@media (hover:none){.hud-bot .hint{display:none}}
+
+.intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:end;padding-block:56px 0}
+.eyebrow{font:500 13px/1.4 var(--f-mono);letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.intro h1{font-size:clamp(40px,6.4vw,76px);line-height:1.12;margin-top:14px;letter-spacing:-0.035em}
+.name{margin-top:18px;font-size:20px;font-weight:600}
+.name span{font:700 14px/1 var(--f-disp);letter-spacing:.06em;color:var(--mute);margin-left:10px}
+.lead{margin-top:18px;color:#cdd1db;font-size:14.5px;line-height:1.85;letter-spacing:-0.01em}
+.lead span{display:block}
+@media (min-width:1200px){.lead span{white-space:nowrap}}
+.open-line{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600}
+.ol-meta{font-weight:500;color:#cdd1db;padding-left:10px;border-left:1px solid var(--line)}
+.open-line .dot{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px color-mix(in srgb,var(--sun) 25%,transparent)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding-bottom:32px}
+.intro .intro-text{grid-column:1;grid-row:1}
+.intro .portrait{grid-column:2;grid-row:1 / span 2}
+.career.hero-career{grid-column:1;grid-row:2;grid-template-columns:minmax(0,1fr);gap:14px;padding-top:24px;margin-bottom:52px}
+.hero-career>div{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:baseline;gap:12px}
+.hero-career h4{font-size:12px;white-space:nowrap}
+.career.hero-career ul{margin-top:0;display:grid;gap:0}
+.hero-career li{font-size:14px;color:#cdd1db;line-height:1.7;white-space:nowrap}
+
+.btn{display:inline-flex;align-items:center;text-decoration:none;font-weight:600;font-size:15px;padding:13px 18px;border-radius:11px;border:1px solid var(--line);background:var(--panel-2)}
+.btn:hover{border-color:#3a4150}
+.btn.primary{background:var(--sun);color:var(--sun-ink);border-color:var(--sun)}
+.portrait{margin:0;position:relative;align-self:end;justify-self:center;width:min(100%,420px)}
+.portrait img{position:relative;display:block;width:100%;height:auto}
+.creds{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:1px;background:var(--line);border-block:1px solid var(--line);padding:0;max-width:none}
+.creds+.creds{border-top:0}
+.creds li{background:var(--ink);font-size:14px;color:var(--mute);min-width:0}
+.creds a,.creds .ci{display:block;height:100%;padding:18px 20px;text-decoration:none;color:inherit}
+.creds a:hover{background:var(--panel)}
+.creds a b::after{content:"↗";font-weight:400;color:var(--dim);margin-left:6px}
+.creds a:hover b::after{color:var(--sun)}
+.creds .need{margin-top:8px;display:flex;width:max-content}
+.creds b{display:block;color:var(--fg);font-size:15px;font-weight:600}
+
+/* 공통 섹션 */
+section.block{padding-block:96px;border-bottom:1px solid var(--line)}
+.sec-head{max-width:760px}
+.sec-head h2{font-size:clamp(28px,3.8vw,44px);margin-top:12px}
+.sec-head p.sub{margin-top:16px;color:var(--mute);max-width:40em}
+.mt-l{margin-top:48px}
+
+/* 숫자 */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stat{padding:26px 22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.stat .num{font:700 clamp(40px,5vw,60px)/1 var(--f-disp);letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.stat .num small{font:600 18px/1 var(--f-body);margin-left:4px;color:var(--mute)}
+.stat .lab{margin-top:14px;font-weight:600}
+.stat .desc{margin-top:4px;font-size:14px;color:var(--mute)}
+.ph-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ph{border:1px dashed var(--need);border-radius:var(--radius);padding:24px;background:var(--panel);display:flex;flex-direction:column;gap:10px;min-width:0}
+.ph h3{font-size:19px}
+.ph p{color:var(--mute);font-size:15px}
+.ph .slot{margin-top:6px;border-radius:10px;background:repeating-linear-gradient(135deg,var(--panel-2) 0 10px,var(--panel) 10px 20px);min-height:120px;display:grid;place-items:center;color:var(--dim);font:500 13px/1.4 var(--f-mono);text-align:center;padding:12px}
+
+/* 1630 */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.clock{font:800 clamp(72px,12vw,150px)/.9 var(--f-disp);letter-spacing:-0.04em;background:var(--spec);-webkit-background-clip:text;background-clip:text;color:transparent}
+.clock-cap{margin-top:16px;font:500 13px/1.6 var(--f-mono);color:var(--mute);letter-spacing:.04em}
+.story .body{color:#cdd1db;margin-top:16px}
+.improve{display:grid;gap:12px;margin-top:28px}
+.improve li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.improve b{font-weight:700}
+.improve span{color:var(--mute);font-size:15px}
+.addr{margin-top:20px;font-size:14px;color:var(--mute)}
+
+/* 콘텐츠 */
+.contents{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.content{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;display:flex;flex-direction:column}
+.cover{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--panel-2) 0 10px,var(--panel) 10px 20px);border-bottom:1px solid var(--line);padding:16px}
+.content .in{padding:22px;display:flex;flex-direction:column;gap:8px}
+.tag{font:500 12px/1 var(--f-mono);letter-spacing:.1em;color:var(--mute)}
+.content h3{font-size:20px}
+.content p{color:var(--mute);font-size:15px}
+
+/* 커리큘럼 */
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stage-card{position:relative;overflow:hidden;padding:26px 22px 24px;border-radius:var(--radius);background:var(--panel);border:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;gap:8px;box-shadow:0 0 18px rgba(255,255,255,.06),0 0 54px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.12);transition:box-shadow .3s,border-color .3s}
+.stage-card::before{content:"";position:absolute;left:-10%;right:-10%;top:-70px;height:140px;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.14),transparent 70%);pointer-events:none}
+.stage-card:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 22px rgba(255,255,255,.1),0 0 70px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.2)}
+.stage-card h3{text-shadow:0 0 18px rgba(255,255,255,.35)}
+.stage-card .when{font:500 13px/1 var(--f-mono);color:var(--mute);letter-spacing:.06em}
+.stage-card h3{font:800 24px/1.15 var(--f-disp);letter-spacing:-0.01em;margin-top:6px}
+.stage-card .kind{font-weight:600}
+.stage-card p{color:var(--mute);font-size:15px}
+.subs{display:flex;flex-wrap:nowrap;gap:5px;margin-top:6px}
+.subs span{white-space:nowrap;font-size:12px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:#cdd1db}
+.glow-line{height:1px;margin-top:32px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85) 50%,transparent);box-shadow:0 0 10px 1px rgba(255,255,255,.28),0 0 30px 2px rgba(255,255,255,.12)}
+.spec-bar{height:2px;background:var(--spec);margin-top:28px;border-radius:2px;opacity:.7}
+
+/* 겨울 */
+.winter{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;max-width:640px}
+.w-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px;display:flex;flex-direction:column;gap:10px}
+.w-card .meta{font:500 13px/1.4 var(--f-mono);color:var(--mute)}
+.w-card h3{font-size:22px}
+.w-rows{display:grid;gap:0;margin-top:6px}
+.w-rows div{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px;align-items:center}
+.w-rows dt,.w-rows .k{color:var(--mute)}
+
+/* 시간표 */
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--mute)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.filters button{font:500 14px/1 var(--f-body);color:var(--mute);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 14px;cursor:pointer}
+.filters button[aria-pressed="true"]{color:var(--ink);background:var(--fg);border-color:var(--fg)}
+.tt{display:grid;grid-template-columns:64px repeat(5,minmax(0,1fr));gap:10px;margin-top:24px}
+.tt-h{font-weight:600;padding-bottom:8px;border-bottom:2px solid var(--fg)}
+.tt-h span{font:500 12px/1 var(--f-mono);color:var(--mute);margin-left:6px}
+.tt-r{font-weight:600;padding-top:12px;color:var(--mute)}
+.cell{border-radius:12px;min-height:132px;padding:14px;display:flex;flex-direction:column;gap:2px;transition:opacity .25s}
+.cell.empty{background:var(--panel);border:1px solid var(--line)}
+.cell.suneung{background:var(--sun);color:var(--sun-ink)}
+.cell.naesin{background:var(--sky);color:var(--sky-ink)}
+.cell.nall{border:1.5px solid var(--fg)}
+.cell .br{font-size:13px;font-weight:600}
+.cell .tm{font:700 26px/1.1 var(--f-disp);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;margin-top:2px}
+.cell .to{font-size:13px;opacity:.8}
+.cell .ty{font-size:14px;font-weight:700;margin-top:auto;padding-top:6px}
+.cell .day{display:none}
+.cell.off{opacity:.18}
+
+/* 강사 */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pillar{padding:26px 22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.pillar .sw{width:28px;height:4px;border-radius:2px;background:var(--c)}
+.pillar h3{font-size:21px;margin-top:18px}
+.pillar p{margin-top:10px;color:var(--mute);font-size:15px}
+.pillars.long{grid-template-columns:minmax(0,1fr);gap:14px}
+.pillars.long .pillar{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:28px;align-items:center;padding:28px 30px;border:1px solid rgba(255,255,255,.16);box-shadow:0 0 18px rgba(255,255,255,.06),0 0 54px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.12);transition:box-shadow .3s,border-color .3s}
+.pillars.long .pillar::before{content:"";position:absolute;left:-5%;top:-60%;width:45%;height:220%;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.1),transparent 70%);pointer-events:none}
+.pillars.long .pillar:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 22px rgba(255,255,255,.1),0 0 70px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.2)}
+.pillars.long h3{margin-top:0;font-size:22px;text-shadow:0 0 18px rgba(255,255,255,.3)}
+.pillars.long p{margin-top:0;font-size:16px}
+@media (max-width:760px){.pillars.long .pillar{grid-template-columns:minmax(0,1fr);gap:10px;padding:24px 22px}}
+.career{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:1px solid var(--line);padding-top:32px}
+.career h4{margin:0;font:500 13px/1 var(--f-mono);letter-spacing:.08em;color:var(--mute)}
+.career ul{margin-top:14px;display:grid;gap:6px}
+.career li{font-size:16px}
+
+/* 후기 */
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rv{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);display:flex;flex-direction:column;gap:16px}
+.rv p{font-size:16px;line-height:1.75}
+.rv .who{margin-top:auto;font:500 13px/1 var(--f-mono);color:var(--mute)}
+.marquee{position:relative;overflow:hidden;margin-top:40px;padding-block:4px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.track{display:flex;width:max-content;animation:slide 60s linear infinite}
+.set{display:flex;gap:16px;padding-right:16px}
+.marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+.set .rv{width:340px;flex:none;margin:0}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:520px){.set .rv{width:280px}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.set[aria-hidden]{display:none}}
+.yt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.yt-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.yt-stats div{padding:14px;border-radius:10px;background:var(--panel-2)}
+.yt-stats b{display:block;font:700 22px/1.2 var(--f-disp)}
+.yt-stats span{font-size:13px;color:var(--mute)}
+.yt-stats b{font-variant-numeric:tabular-nums}
+.yt-upd{margin-top:10px;font:400 12px/1.4 var(--f-mono);color:var(--dim)}
+
+/* 영상 */
+.videos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.video{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.video .thumb{aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--panel-2) 0 10px,var(--panel) 10px 20px);position:relative}
+.video .play{width:52px;height:52px;border-radius:50%;background:var(--fg);display:grid;place-items:center}
+.video .play::after{content:"";border-left:14px solid var(--ink);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.video .thumb .need{position:absolute;left:12px;top:12px}
+.video .in{padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.video h3{font-size:17px}
+.video p{font-size:14px;color:var(--mute)}
+
+.ot{position:relative;display:block;overflow:hidden;max-width:880px;aspect-ratio:16/9;border-radius:var(--radius);background:var(--panel);border:1px solid rgba(255,255,255,.16);text-decoration:none;color:var(--fg);box-shadow:0 0 18px rgba(255,255,255,.06),0 0 54px rgba(255,255,255,.05);transition:box-shadow .3s,border-color .3s}
+.ot:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 24px rgba(255,255,255,.1),0 0 80px rgba(255,255,255,.08)}
+.ot-glow{position:absolute;right:-6%;top:-20%;width:70%;height:140%;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.16),transparent 70%)}
+.ot-photo{position:absolute;right:4%;bottom:0;height:96%;width:auto;max-width:none}
+.ot-text{position:absolute;left:6%;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:14px;z-index:1}
+.ot-title{font-size:clamp(24px,4.6vw,46px);font-weight:700;line-height:1.2;letter-spacing:-0.03em;text-shadow:0 0 22px rgba(255,255,255,.25);white-space:nowrap}
+.ot-cta{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.ot .play{width:40px;height:40px;border-radius:50%;background:var(--fg);display:grid;place-items:center;flex:none}
+.ot .play::after{content:"";border-left:12px solid var(--ink);border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+@media (max-width:520px){.ot .tag{display:none}.ot-cta{font-size:13px}.ot .play{width:32px;height:32px}}
+/* 숫자 줄바꿈 방지 */
+.stat .num,.stat .num small,.yt-stats b,.cell .tm,.cell .to,.branch .tel,.tel,.ol-meta,.stage-card .when{white-space:nowrap}
+.yt-stats b{font-size:clamp(17px,2vw,22px)}
+/* 관리 */
+.care{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:2px solid var(--fg)}
+.care li{padding:24px 18px 8px 0}
+.care li+li{padding-left:18px;border-left:1px solid var(--line)}
+.care h3{font-size:18px;white-space:nowrap}
+.care.dup{display:none}
+@media (prefers-reduced-motion:reduce){.care-wrap{overflow-x:auto!important;-webkit-mask-image:none!important;mask-image:none!important}.care-track{animation:none!important}.care.dup{display:none!important}}
+.care ul{margin-top:12px;display:grid;gap:4px}
+.care ul li{padding:0;border:0;font-size:14px;color:var(--mute)}
+
+.motto{padding-block:96px;border-bottom:1px solid var(--line);text-align:left}
+.motto p{color:var(--mute);font-size:18px;line-height:1.9}
+.motto h2{font-size:clamp(32px,5vw,58px);margin-top:18px;letter-spacing:-0.035em}
+.motto .glow-line{max-width:320px;background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(255,255,255,.4) 55%,transparent)}
+
+/* FAQ */
+.faq{display:grid;gap:0;border-top:1px solid var(--line);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font-weight:600;font-size:17px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 22px/1 var(--f-mono);color:var(--mute);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 24px;color:var(--mute);max-width:44em}
+
+/* 상담 */
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.branch{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);display:flex;flex-direction:column;gap:6px}
+.branch .bn{font-weight:700;font-size:17px}
+.branch .bt{font-size:13px;color:var(--mute)}
+.branch .tel{font:700 20px/1.2 var(--f-disp);letter-spacing:-0.01em;text-decoration:none;user-select:all;margin-top:6px;font-variant-numeric:tabular-nums}
+.branch{position:relative;overflow:hidden;border-color:rgba(255,255,255,.16);box-shadow:0 0 18px rgba(255,255,255,.06),0 0 54px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.12);transition:box-shadow .3s,border-color .3s}
+.branch::before{content:"";position:absolute;left:-10%;right:-10%;top:-60px;height:120px;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.12),transparent 70%);pointer-events:none}
+.branch:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 22px rgba(255,255,255,.1),0 0 70px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.2)}
+.branch .bt{white-space:nowrap;font-size:clamp(11.5px,3.1vw,13px)}
+
+.channels{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+
+footer{padding-block:48px 64px;color:var(--dim);font-size:14px}
+footer .f-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer b{color:var(--fg)}
+
+@media (max-width:980px){
+  .stats,.road{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reviews,.contents,.videos,.contact,.pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .care-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .care-track{display:flex;width:max-content;animation:slide 36s linear infinite}
+  .care-wrap:hover .care-track{animation-play-state:paused}
+  .care{grid-template-columns:repeat(5,200px)}
+  .care.dup{display:grid}
+  .care>li,.care>li+li{padding-left:18px;padding-right:18px;border-left:1px solid var(--line)}
+  .creds{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .creds[style*="--n:4"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .story{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media (max-width:760px){
+  .links,.need-toggle{display:none}
+  .nav-cta{margin-left:auto}
+  .intro{grid-template-columns:minmax(0,1fr);gap:8px;padding-top:40px}
+  .portrait{order:-1;width:min(70%,300px)}
+  .intro .intro-text,.intro .portrait,.intro .career.hero-career{grid-column:auto;grid-row:auto}
+  .intro .career.hero-career{margin-bottom:40px;gap:18px}
+  .hero-career>div{grid-template-columns:minmax(0,1fr);gap:6px}
+  .hero-career li{white-space:normal}
+  .cta-row{padding-bottom:40px}
+  section.block{padding-block:72px}
+  .ph-grid,.winter,.career,.yt{grid-template-columns:minmax(0,1fr)}
+  .tt{grid-template-columns:minmax(0,1fr)}
+  .tt-h,.tt-r,.cell.empty{display:none}
+  .cell{order:var(--ord);min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:baseline}
+  .cell .day{display:block;grid-row:span 4;font-weight:700;font-size:15px;width:40px}
+  .cell .ty{padding-top:2px}
+  .improve li{grid-template-columns:minmax(0,1fr);gap:4px}
+}
+@media (max-width:520px){
+  .stats,.road,.reviews,.contents,.videos,.contact,.pillars{grid-template-columns:minmax(0,1fr)}
+  .creds,.creds[style*="--n:4"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .yt-stats{grid-template-columns:minmax(0,1fr)}
+  .hud{font-size:11px}
+  .hud-bot span:first-child{max-width:100%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cell{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="brand-mark">16:30</span><span>박건수 통합과학</span></a>
+    <nav class="links" aria-label="페이지 섹션">
+      <a href="#curriculum">커리큘럼</a>
+      <a href="#winter">겨울방학</a>
+      <a href="#timetable">시간표</a>
+      <a href="#teacher">강사</a>
+      <a href="#voices">후기</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#contact">수강 상담</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="stage" id="stage">
+    <canvas id="prism" role="img" aria-label="검은 16:30 글자 뒤에서 빛이 새어 나와 무지개빛 후광과 빛줄기가 퍼지는 그래픽"></canvas>
+    <div class="fallback" aria-hidden="true">16:30</div>
+    <div class="hud wrap" aria-hidden="true">
+      <div class="hud-top"><span>λ 380 – 750 nm</span><span>2028 INTEGRATED SCIENCE</span></div>
+      <div class="hud-bot"><span>수능 과학탐구가 시작되는 시간. 매일의 16:30이 모여 수능 날의 16:30으로 이어지도록.</span></div>
+    </div>
+  </div>
+
+  <div class="intro wrap">
+    <div class="intro-text">
+      <p class="eyebrow">2028 수능 통합과학 · 과학하는 박건수</p>
+      <h1>생각의 속도,<br>과학의 속도</h1>
+      <p class="name">박건수 통합과학<span>PARK GUNSOO</span></p>
+      <p class="lead"><span>기출이 없는 첫 수능 통합과학.</span><span>문항을 직접 연구하고 만들며 다양한 지역에서 수능 화학 및 통합과학을 강의해 온 박건수가</span><span>개념부터 실전까지 하나의 흐름으로 이어지는 1년을 설계합니다.</span></p>
+      <div class="open-line"><span class="dot" aria-hidden="true"></span>2027 겨울 LEVEL UP<span class="ol-meta">1월 첫 주 순차 개강</span><span class="ol-meta">고3 및 N수</span></div>
+      <div class="cta-row">
+        <a class="btn primary" href="#timetable">시간표 보기</a>
+        <a class="btn" href="#curriculum">커리큘럼 보기</a>
+        <a class="btn" href="#contact">수강 상담</a>
+      </div>
+    </div>
+    <div class="career hero-career">
+      <div><h4>학력</h4><ul><li>고려대학교 기계공학과 졸업</li><li>연세대학교 대학원 통합과학교육 석사과정</li></ul></div>
+      <div><h4>현직</h4><ul><li>1630과학학원 산본 원장</li><li>메가스터디 러셀 목동, 영통, 부천</li><li>해냄학원 평촌</li><li>온율학원 덕소</li></ul></div>
+      <div><h4>연구 · 콘텐츠</h4><ul><li>과학던전 통합과학 연구소 대표</li><li>MAikers(with CSM17) 통합과학 팀장</li><li>문제 깎는 청년들 대표 연구원</li></ul></div>
+    </div>
+    <figure class="portrait"><img src="profile.webp" alt="통합과학 강사 박건수" width="760" height="1277"></figure>
+  </div>
+
+  <ul class="creds" style="--n:6" aria-label="출강 학원">
+    <li><a href="https://blog.naver.com/dungeonscience" target="_blank" rel="noopener"><b>1630과학학원</b>산본 · 원장</a></li>
+    <li><a href="https://russelmd.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>목동</a></li>
+    <li><a href="https://russelyt.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>영통</a></li>
+    <li><a href="https://russelbc.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>부천</a></li>
+    <li><a href="https://blog.naver.com/henem_" target="_blank" rel="noopener"><b>해냄학원</b>평촌</a></li>
+    <li><a href="https://blog.naver.com/onyuldasan" target="_blank" rel="noopener"><b>온율학원</b>덕소</a></li>
+  </ul>
+  <ul class="creds" style="--n:4" aria-label="연구 · 콘텐츠">
+    <li><div class="ci"><b>과학던전 통합과학 연구소</b>대표</div></li>
+    <li><div class="ci"><b>MAikers(with CSM17)</b>통합과학 팀장</div></li>
+    <li><div class="ci"><b>문제 깎는 청년들</b>대표 연구원</div></li>
+    <li><a href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener"><b>과학하는 박건수</b>유튜브 채널</a></li>
+  </ul>
+</section>
+
+<section class="block" id="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">숫자로 보는 박건수 통합과학</p>
+      <h2>한 주에 열 번, 여섯 곳의 강의실에서 여러분을 만납니다.</h2>
+    </div>
+    <div class="stats mt-l">
+      <div class="stat"><div class="num">6<small>곳</small></div><div class="lab">출강 학원</div><div class="desc">1630 산본 · 러셀 목동·영통·부천 · 해냄 평촌 · 온율 덕소</div></div>
+      <div class="stat"><div class="num">10<small>개 반</small></div><div class="lab">주간 수업</div><div class="desc">수요일부터 일요일까지<br>수능·N종합</div></div>
+      <div class="stat"><div class="num">32<small>회분 + α</small></div><div class="lab">자체 제작 실전 문항</div><div class="desc">자체 N제<br>극딜 모의고사 S1~S4 16회분<br>MAikers 모의고사 16회분</div></div>
+      <div class="stat"><div class="num">10<small>권</small></div><div class="lab">월간지 RAID</div><div class="desc">1월부터 10월까지<br>학습 시기와 과정에 따라<br>반드시 필요한 엄선 문항</div></div>
+    </div>
+
+    <div class="sec-head mt-l" id="voices">
+      <p class="eyebrow">수강 후기</p>
+      <h2>학생들이 말하는 박건수</h2>
+    </div>
+  </div>
+  <div class="marquee" aria-label="수강 후기">
+    <div class="track">
+      <div class="set">
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
+        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
+        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
+        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
+      </div>
+      <div class="set" aria-hidden="true">
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
+        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
+        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
+        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="curriculum">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">커리큘럼</p>
+      <h2>1월에 시작해 10월에 완성하는 네 단계.</h2>
+      <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
+    </div>
+    <div class="road mt-l">
+      <div class="stage-card" style="--c:#ff6a4d"><span class="when">01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
+      <div class="stage-card" style="--c:#ffd23a"><span class="when">02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
+      <div class="stage-card" style="--c:#3ccf86"><span class="when">03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
+      <div class="stage-card" style="--c:#6a7bff"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
+    </div>
+    <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="winter">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">다가오는 겨울방학</p>
+      <h2>2027 겨울, LEVEL UP으로 통합과학의 첫 단추를 끼웁니다.</h2>
+      <p class="sub" style="max-width:none">통합과학 개념을 수능 출제자의 관점으로 다시 엮는 두 달입니다.<br>반드시 필요한 개념을 정확하게 암기하고 효율적으로 사용하는 방법을 배웁니다.</p>
+    </div>
+    <div class="winter mt-l">
+      <article class="w-card">
+        <span class="meta">겨울 정규 · 2028 수능 통합과학</span>
+        <h3>LEVEL UP 개념반</h3>
+        <div class="w-rows">
+          <div><span class="k">대상</span><span>고3 및 N수</span></div>
+          <div><span class="k">개강</span><span>1월 첫 주 순차 개강</span></div>
+          <div><span class="k">회차</span><span>8회차</span></div>
+          <div><span class="k">교재</span><span>LEVEL UP 개념편 · 월간지 RAID</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="timetable">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">주간 시간표</p>
+      <h2>가까운 학원, 편한 시간으로 고르세요.</h2>
+    </div>
+    <div class="legend mt-l" style="margin-top:32px">
+      <span><i style="background:var(--sun)"></i>수능</span>
+      <span><i style="background:var(--sky)"></i>고1 내신</span>
+      <span><i style="border:1.5px solid var(--fg)"></i>N종합</span>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="학원별 보기"></div>
+    <div class="tt" id="tt"></div>
+  </div>
+</section>
+
+<section class="block" id="teacher">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">왜 박건수 통합과학인가</p>
+      <h2>문항을 만들고, 풀이를 다듬고, 수업을 즐겁게.</h2>
+    </div>
+    <div class="pillars long mt-l">
+      <div class="pillar"><h3>문항을 직접 만드는 강사</h3><p>과학던전 통합과학 연구소, MAikers, 문제 깎는 청년들에서<br>수업에 사용하는 문항과 교재를 직접 연구하고 제작합니다.</p></div>
+      <div class="pillar"><h3>시험장에서 쓸 수 있는 풀이</h3><p>간결하고 일관된 풀이를 제시해<br>시험장에서도 그대로 적용할 수 있는 강력한 해결을 추구합니다.</p></div>
+      <div class="pillar"><h3>다음 수업이 기다려지는 강의</h3><p>유쾌한 분위기 속에서도 밀도는 놓치지 않습니다.<br>재미와 실력이 함께 쌓이는 수업을 지향합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">유튜브</p>
+      <h2>수업 밖에서도 통합과학은 이어집니다.</h2>
+    </div>
+
+    <div class="yt mt-l">
+      <div>
+        <span class="tag">YOUTUBE</span>
+        <h3 style="font-size:22px;margin-top:8px">과학하는 박건수</h3>
+        <p style="color:var(--mute);margin-top:6px">수업 밖에서도 통합과학을 공부하는 학생들이 모이는 채널입니다.</p>
+        <div class="yt-stats">
+          <div><b data-yt="subs">8,590</b><span>구독자</span></div>
+          <div><b data-yt="views">3,088,225</b><span>누적 조회수</span></div>
+          <div><b data-yt="videos">509</b><span>영상 수</span></div>
+        </div>
+        <p class="yt-upd" data-yt="date">10월 28일 업데이트</p>
+      </div>
+      <a class="btn" href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener">채널 방문</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="videos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">영상으로 먼저 보기</p>
+      <h2>박건수를 영상으로 먼저 만나보세요.</h2>
+    </div>
+    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
+      <span class="ot-glow" aria-hidden="true"></span>
+      <span class="ot-text">
+        <span class="tag">ORIENTATION</span>
+        <span class="ot-title">2028 수능<br>통합과학 OT</span>
+        <span class="ot-cta"><span class="play" aria-hidden="true"></span>유튜브에서 보기</span>
+      </span>
+      <img class="ot-photo" src="profile.webp" alt="" width="760" height="1277">
+    </a>
+  </div>
+</section>
+
+<section class="block" id="care">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">관리 프로그램</p>
+      <h2>수업이 끝난 뒤에도 공부의 흐름이 이어지도록.</h2>
+    </div>
+    <div class="care-wrap mt-l">
+     <div class="care-track">
+      <ul class="care">
+        <li><h3>학습 지도 멘토링</h3><ul><li>주기적 학생 상담</li><li>성취도 기반</li><li>수준별 맞춤 멘토링</li></ul></li>
+        <li><h3>주간 복습 테스트</h3><ul><li>개념 복습 테스트</li><li>무제한 재시험</li><li>학생별 과제 오답노트</li></ul></li>
+        <li><h3>수업 피드백</h3><ul><li>테스트·과제 결과</li><li>누적 성취도·약점</li><li>수업 후 문자 발송</li></ul></li>
+        <li><h3>질의응답</h3><ul><li>수업 전후 질의응답</li><li>온라인 실시간 질문</li></ul></li>
+        <li><h3>온라인 콘텐츠</h3><ul><li>개인 홈페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
+      </ul>
+      <ul class="care dup" aria-hidden="true">
+        <li><h3>학습 지도 멘토링</h3><ul><li>주기적 학생 상담</li><li>성취도 기반</li><li>수준별 맞춤 멘토링</li></ul></li>
+        <li><h3>주간 복습 테스트</h3><ul><li>개념 복습 테스트</li><li>무제한 재시험</li><li>학생별 과제 오답노트</li></ul></li>
+        <li><h3>수업 피드백</h3><ul><li>테스트·과제 결과</li><li>누적 성취도·약점</li><li>수업 후 문자 발송</li></ul></li>
+        <li><h3>질의응답</h3><ul><li>수업 전후 질의응답</li><li>온라인 실시간 질문</li></ul></li>
+        <li><h3>온라인 콘텐츠</h3><ul><li>개인 홈페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
+      </ul>
+     </div>
+    </div>
+  </div>
+</section>
+
+<section class="motto">
+  <div class="wrap">
+    <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
+    <h2>과정은 치열하게, 해결은 단순하게.</h2>
+    <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">자주 묻는 질문</p>
+      <h2>궁금한 점을 먼저 풀어 드립니다.</h2>
+    </div>
+    <div class="faq mt-l">
+      <details><summary>고1 때 통합과학을 배웠는데, 수능 대비를 다시 해야 하나요?</summary><p>학교 내신은 정해진 범위 안에서 출제되지만, 수능은 여러 단원을 연결해 묻는 문항이 많습니다. LEVEL UP에서 고1 때 배운 개념을 수능 문항의 관점으로 다시 엮고, SKILL UP부터 연결 훈련을 이어 갑니다.</p></details>
+      <details><summary>기출이 없는데 무엇으로 연습하나요?</summary><p>박건수T가 연구소와 출제팀에서 직접 만든 문항으로 연습합니다. 월간지 RAID 10권, MAikers 모의고사 16회분, 평가원 모의평가 직후 나오는 분석서 UPDATE가 1년 동안 이어집니다.</p></details>
+      <details><summary>통합과학을 처음 제대로 공부해도 따라갈 수 있나요?</summary><p>네. LEVEL UP은 개념을 이해하는 단계부터 시작합니다. 매주 개념 복습 테스트를 보고, 통과할 때까지 재시험을 무제한으로 볼 수 있어 빈틈을 남기지 않습니다.</p></details>
+      <details><summary>결석하면 수업을 어떻게 따라가나요?</summary><p>개인 홈페이지에 복습 영상과 추가 강의 영상이 올라갑니다. 결석한 주의 내용도 영상과 과제로 따라올 수 있습니다.</p></details>
+      <details><summary>학부모는 학습 상황을 어떻게 확인하나요?</summary><p>수업이 끝나면 테스트와 과제 결과, 누적 성취도와 약점을 문자로 보내 드립니다. 주기적인 학생 상담 내용도 함께 공유합니다.</p></details>
+      <details><summary>질문은 언제, 어떻게 할 수 있나요?</summary><p>수업 전후에 직접 질문할 수 있고, 수업 밖에서는 온라인으로 실시간 질문을 받습니다.</p></details>
+      <details><summary>수강 신청과 상담은 어디로 하면 되나요?</summary><p>다니실 학원으로 바로 문의해 주세요. 아래에 학원별 연락처를 정리해 두었습니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">수강 문의</p>
+      <h2>통합과학, 지금 속도를 올려 보세요.</h2>
+      <p class="sub">반 배정과 시간표는 학원별로 안내해 드립니다. 번호를 누르거나 길게 눌러 복사하세요.</p>
+    </div>
+    <div class="contact mt-l">
+      <div class="branch home"><span class="bn">1630 산본</span><span class="bt">일 14:00 고1 내신 · 일 18:30 수능</span><a class="tel" href="tel:0313978736">031-397-8736</a></div>
+      <div class="branch"><span class="bn">러셀 목동</span><span class="bt">토 18:30 수능</span><a class="tel" href="tel:0269321010">02-6932-1010</a></div>
+      <div class="branch"><span class="bn">러셀 영통</span><span class="bt">수 13:30 N종합 · 수 18:30 · 토 08:40 수능</span><a class="tel" href="tel:0312511010">031-251-1010</a></div>
+      <div class="branch"><span class="bn">러셀 부천</span><span class="bt">토 14:00 수능</span><a class="tel" href="tel:0322651010">032-265-1010</a></div>
+      <div class="branch"><span class="bn">해냄 평촌</span><span class="bt">금 18:30 · 일 09:30 수능</span><a class="tel" href="tel:0314768878">031-476-8878</a></div>
+      <div class="branch"><span class="bn">온율 덕소</span><span class="bt">목 18:30 수능</span><a class="tel" href="tel:0315233286">031-523-3286</a></div>
+    </div>
+    <div class="channels">
+      <a class="btn" href="https://www.instagram.com/gun._.soo_dg/" target="_blank" rel="noopener">인스타그램 @gun._.soo_dg</a>
+      <a class="btn" href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener">유튜브 과학하는 박건수</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap f-in">
+    <div><b>박건수 통합과학</b> · 과학하는 박건수<br>생각의 속도, 과학의 속도</div>
+    <div>인스타그램 @gun._.soo_dg · 유튜브 과학하는 박건수</div>
+  </div>
+</footer>
+
+<script>
+
+/* 시간표 */
+(function(){
+  var days=[['수','WED'],['목','THU'],['금','FRI'],['토','SAT'],['일','SUN']];
+  var periods=['오전','오후','저녁'];
+  var S=[
+    {d:0,p:1,b:'러셀 영통',t:'13:30',e:'17:00',k:'nall',ty:'N종합 통합과학'},
+    {d:0,p:2,b:'러셀 영통',t:'18:30',e:'22:00',k:'suneung',ty:'수능 통합과학'},
+    {d:1,p:2,b:'온율 덕소',t:'18:30',e:'22:00',k:'suneung',ty:'수능 통합과학'},
+    {d:2,p:2,b:'해냄 평촌',t:'18:30',e:'22:00',k:'suneung',ty:'수능 통합과학'},
+    {d:3,p:0,b:'러셀 영통',t:'08:40',e:'12:10',k:'suneung',ty:'수능 통합과학'},
+    {d:3,p:1,b:'러셀 부천',t:'14:00',e:'17:30',k:'suneung',ty:'수능 통합과학'},
+    {d:3,p:2,b:'러셀 목동',t:'18:30',e:'22:00',k:'suneung',ty:'수능 통합과학'},
+    {d:4,p:0,b:'해냄 평촌',t:'09:30',e:'13:00',k:'suneung',ty:'수능 통합과학'},
+    {d:4,p:1,b:'1630 산본',t:'14:00',e:'17:00',k:'naesin',ty:'수리고 내신 통합과학'},
+    {d:4,p:2,b:'1630 산본',t:'18:30',e:'22:00',k:'suneung',ty:'수능 통합과학'}
+  ];
+  var tt=document.getElementById('tt'),h='<div></div>';
+  days.forEach(function(d){h+='<div class="tt-h">'+d[0]+'<span>'+d[1]+'</span></div>';});
+  periods.forEach(function(p,pi){
+    h+='<div class="tt-r">'+p+'</div>';
+    days.forEach(function(d,di){
+      var s=S.filter(function(x){return x.d===di&&x.p===pi;})[0];
+      if(!s){h+='<div class="cell empty" aria-hidden="true"></div>';return;}
+      h+='<div class="cell '+s.k+'" data-b="'+s.b+'" style="--ord:'+(di*3+pi)+'"><span class="day">'+d[0]+'</span><span class="br">'+s.b+'</span><span class="tm">'+s.t+'</span><span class="to">~ '+s.e+'</span><span class="ty">'+s.ty+'</span></div>';
+    });
+  });
+  tt.innerHTML=h;
+  var names=['전체','1630 산본','러셀 목동','러셀 영통','러셀 부천','해냄 평촌','온율 덕소'];
+  var f=document.getElementById('filters');
+  f.innerHTML=names.map(function(n,i){return '<button type="button" id="f'+i+'" aria-pressed="'+(i===0)+'">'+n+'</button>';}).join('');
+  f.addEventListener('click',function(e){
+    var btn=e.target.closest('button'); if(!btn) return;
+    var n=btn.textContent;
+    f.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===btn));});
+    tt.querySelectorAll('.cell[data-b]').forEach(function(c){c.classList.toggle('off',n!=='전체'&&c.dataset.b!==n);});
+  });
+})();
+
+/* 16:30 프리즘 */
+(function(){
+  var stage=document.getElementById('stage'), cv=document.getElementById('prism');
+  var gl=null;
+  try{gl=cv.getContext('webgl',{antialias:false,premultipliedAlpha:false})||cv.getContext('experimental-webgl');}catch(e){}
+  if(!gl){document.documentElement.classList.add('no-gl');return;}
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var VS='attribute vec2 a;varying vec2 vUv;void main(){vUv=a*0.5+0.5;gl_Position=vec4(a,0.,1.);}';
+  var FS=[
+  'precision highp float;',
+  'varying vec2 vUv;',
+  'uniform vec2 uRes;uniform float uTime;uniform vec2 uM;uniform sampler2D uTex;uniform vec4 uRect;uniform vec2 uTx;',
+  'vec3 hue(float t){float h=fract(t)*0.82;return clamp(abs(fract(h+vec3(0.,2./3.,1./3.))*6.-3.)-1.,0.,1.);}',
+  'vec2 toT(vec2 uv){return (uv-uRect.xy)/uRect.zw;}',
+  'float inT(vec2 t){return step(0.0,t.x)*step(t.x,1.0)*step(0.0,t.y)*step(t.y,1.0);}',
+  'float mS(vec2 uv){vec2 t=toT(uv);return texture2D(uTex,t).r*inT(t);}',
+  'float mB(vec2 uv){vec2 t=toT(uv);return texture2D(uTex,t).g*inT(t);}',
+  'float mC(vec2 uv){vec2 t=toT(uv);return texture2D(uTex,t).b*inT(t);}',
+  'float shape(vec2 uv,vec2 L,float A){vec2 d=(uv-L)*vec2(A,1.);d.x/=uRect.z*A*0.5;d.y/=uRect.w*0.8;return exp(-dot(d,d));}',
+  'float em(vec2 uv,vec2 L,float A){float c=mC(uv);return (0.25+0.75*shape(uv,L,A))*c*c*(1.-mS(uv))*1.6;}',
+  'void main(){',
+  ' float A=uRes.x/uRes.y;',
+  ' vec2 uv=vUv;',
+  ' vec2 C=uRect.xy+uRect.zw*vec2(0.5,0.47);',
+  ' vec2 L=C+vec2((uM.x-0.5)*uRect.z*0.55,(uM.y-0.5)*uRect.w*0.7);',
+  ' vec3 col=vec3(0.016,0.017,0.022);',
+  ' vec2 p=(uv-0.5)*vec2(A,1.);',
+  ' vec2 g=abs(fract(p*8.)-0.5);col+=vec3(0.012,0.013,0.017)*smoothstep(0.486,0.5,max(g.x,g.y));',
+  ' vec3 rays=vec3(0.);float w=1.;',
+  ' for(int i=0;i<30;i++){',
+  '  float t=float(i)/30.*0.85;',
+  '  rays+=vec3(em(mix(uv,L,t*0.93),L,A),em(mix(uv,L,t),L,A),em(mix(uv,L,t*1.08),L,A))*w;',
+  '  w*=0.952;',
+  ' }',
+  ' rays*=0.014;',
+  ' vec2 dd=(uv-L)*vec2(A,1.);',
+  ' float ang=atan(dd.y,dd.x)/6.2831853;',
+  ' vec3 tint=mix(vec3(1.0,0.95,0.88),hue(ang+uTime*0.025),0.3);',
+  ' col+=rays*tint*1.25;',
+  ' col+=vec3(1.0,0.96,0.9)*em(uv,L,A)*0.2;',
+  ' vec2 dir=normalize(dd+1e-5)*vec2(1./A,1.);',
+  ' float m=mS(uv);',
+  ' float o=uRect.w*0.018;',
+  ' vec3 rim=vec3(mB(uv+dir*o*1.6),mB(uv+dir*o),mB(uv+dir*o*0.4));',
+  ' rim=clamp(rim-m,0.,1.)*(0.35+0.65*shape(uv,L,A));',
+  ' col+=rim*hue(ang*2.+uTime*0.04)*0.3+rim*0.18;',
+  ' col=mix(col,vec3(0.006,0.0065,0.008),m);',
+  ' vec2 v=uv-0.5;col*=1.-0.6*dot(v,v);',
+  ' col=1.-exp(-col*1.35);',
+  ' col+=(fract(sin(dot(gl_FragCoord.xy+fract(uTime)*91.,vec2(12.9898,78.233)))*43758.5453)-0.5)*0.02;',
+  ' gl_FragColor=vec4(col,1.);',
+  '}'].join('\n');
+
+  function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){throw new Error(gl.getShaderInfoLog(o));}return o;}
+  var pr;
+  try{pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))throw new Error('link');}
+  catch(e){document.documentElement.classList.add('no-gl');return;}
+  gl.useProgram(pr);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var al=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(al);gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
+  var U={};['uRes','uTime','uM','uTex','uRect','uTx'].forEach(function(n){U[n]=gl.getUniformLocation(pr,n);});
+
+  var TW=1600,TH=560;
+  function blur(src,w,h,r){
+    var a=new Float32Array(src),b=new Float32Array(w*h),k=2*r+1;
+    for(var pass=0;pass<3;pass++){
+      for(var y=0;y<h;y++){var s=0,row=y*w;for(var x=-r;x<=r;x++)s+=a[row+Math.min(w-1,Math.max(0,x))];
+        for(x=0;x<w;x++){b[row+x]=s/k;s+=a[row+Math.min(w-1,x+r+1)]-a[row+Math.max(0,x-r)];}}
+      for(var x2=0;x2<w;x2++){var s2=0;for(y=-r;y<=r;y++)s2+=b[Math.min(h-1,Math.max(0,y))*w+x2];
+        for(y=0;y<h;y++){a[y*w+x2]=s2/k;s2+=b[Math.min(h-1,y+r+1)*w+x2]-b[Math.max(0,y-r)*w+x2];}}
+    }
+    return a;
+  }
+  function buildTex(){
+    var c=document.createElement('canvas');c.width=TW;c.height=TH;var x=c.getContext('2d');
+    x.fillStyle='#000';x.fillRect(0,0,TW,TH);x.fillStyle='#fff';x.textAlign='center';x.textBaseline='middle';
+    var fam='800 100px Unbounded, "IBM Plex Sans KR", sans-serif';x.font=fam;
+    var w=x.measureText('16:30').width,fs=Math.min(100*(TW*0.94)/w,TH*0.78);
+    x.font='800 '+fs+'px Unbounded, "IBM Plex Sans KR", sans-serif';
+    x.fillText('16:30',TW/2,TH/2+fs*0.04);
+    var d=x.getImageData(0,0,TW,TH).data,mk=new Float32Array(TW*TH);
+    for(var i=0;i<TW*TH;i++)mk[i]=d[i*4]/255;
+    var hb=blur(mk,TW,TH,9),hc=blur(mk,TW,TH,36),out=new Uint8Array(TW*TH*4);
+    for(i=0;i<TW*TH;i++){out[i*4]=d[i*4];out[i*4+1]=Math.round(Math.min(1,hb[i])*255);out[i*4+2]=Math.round(Math.min(1,hc[i]*2.0)*255);out[i*4+3]=255;}
+    var t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,TW,TH,0,gl.RGBA,gl.UNSIGNED_BYTE,out);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.uniform1i(U.uTex,0);gl.uniform2f(U.uTx,1/TW,1/TH);
+  }
+
+  var W=1,H=1,rect=[0,0,1,1];
+  function size(){
+    var dpr=Math.min(window.devicePixelRatio||1,1.25);
+    W=Math.max(1,Math.round(stage.clientWidth*dpr));H=Math.max(1,Math.round(stage.clientHeight*dpr));
+    cv.width=W;cv.height=H;gl.viewport(0,0,W,H);
+    var asp=W/H,fw=asp>1.5?0.66:0.9,fh=fw*asp/(TW/TH);
+    rect=[0.5-fw/2,0.5-fh/2,fw,fh];
+    gl.uniform2f(U.uRes,W,H);gl.uniform4f(U.uRect,rect[0],rect[1],rect[2],rect[3]);
+  }
+
+  var target=[0.5,0.5],cur=[0.5,0.5],hover=false,t0=performance.now(),visible=true,raf=0;
+  stage.addEventListener('pointermove',function(e){var r=stage.getBoundingClientRect();hover=true;target=[(e.clientX-r.left)/r.width,1-(e.clientY-r.top)/r.height];});
+  stage.addEventListener('pointerleave',function(){hover=false;});
+
+  function frame(now){
+    var t=(now-t0)/1000;
+    if(!hover){target=[0.5+0.42*Math.sin(t*0.31),0.5+0.36*Math.sin(t*0.43+1.0)];}
+    cur[0]+=(target[0]-cur[0])*0.06;cur[1]+=(target[1]-cur[1])*0.06;
+    gl.uniform1f(U.uTime,t);gl.uniform2f(U.uM,cur[0],cur[1]);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    if(!reduce&&visible)raf=requestAnimationFrame(frame);
+  }
+  function start(){cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);}
+
+  var fontReady=(document.fonts&&document.fonts.load)?Promise.race([document.fonts.load('800 100px Unbounded'),new Promise(function(r){setTimeout(r,2500);})]):Promise.resolve();
+  fontReady.then(function(){},function(){}).then(function(){
+    buildTex();size();
+    if(reduce){cur=[0.62,0.7];frame(t0+4000);}else start();
+    if('ResizeObserver' in window){new ResizeObserver(function(){size();if(reduce)frame(t0+4000);}).observe(stage);}
+    else window.addEventListener('resize',size);
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible&&!reduce)start();}).observe(stage);}
+  });
+})();
+</script>
+</body>
+</html>

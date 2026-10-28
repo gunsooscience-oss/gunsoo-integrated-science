@@ -1,0 +1,23 @@
+name: 유튜브 수치 매일 갱신
+on:
+  schedule:
+    - cron: "47 20 * * *"   # 매일 한국시간 05:47
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/update_youtube.py
+      - name: 바뀐 내용이 있으면 커밋
+        run: |
+          if git diff --quiet; then echo "변경 없음"; exit 0; fi
+          git config user.name "youtube-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -am "유튜브 수치 갱신"
+          git push
