@@ -206,8 +206,9 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 .portrait img{filter:drop-shadow(-3px -2px 9px rgba(255,120,110,.13)) drop-shadow(3px -2px 9px rgba(80,170,255,.13)) drop-shadow(0 -6px 24px rgba(255,255,255,.16))}
 .ot-photo{filter:drop-shadow(0 -4px 18px rgba(255,255,255,.14))}
 /* 4) 16:30 시계 */
-.clock{display:inline-flex;align-items:baseline;gap:10px;color:#c9ceda}
-.ck-time{font:700 16px/1 var(--f-disp);color:var(--fg);letter-spacing:.02em;font-variant-numeric:tabular-nums;text-shadow:0 0 12px rgba(255,255,255,.35)}
+.clock{display:inline-flex;align-items:baseline;gap:10px;color:#8b92a1}
+.ck-time{font:700 16px/1 var(--f-disp);color:#8b92a1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.ck-msg{color:#8b92a1}
 .ck-colon{display:inline-block;margin:0 1px;animation:blink 1s steps(1,end) infinite}
 @keyframes blink{50%{opacity:0}}
 .ck-msg{font:400 12px/1.4 var(--f-mono);letter-spacing:.04em}
@@ -484,7 +485,7 @@ footer b{color:var(--fg)}
     <canvas id="prism" role="img" aria-label="검은 16:30 글자 뒤에서 빛이 새어 나와 무지개빛 후광과 빛줄기가 퍼지는 그래픽"></canvas>
     <div class="fallback" aria-hidden="true">16:30</div>
     <div class="hud wrap" aria-hidden="true">
-      <div class="hud-top"><span class="clock" id="clock" aria-live="off"><b class="ck-time"><span class="ck-h">--</span><span class="ck-colon">:</span><span class="ck-m">--</span></b><span class="ck-msg">16:30까지</span></span><span>λ 380 – 750 nm · 2028 INTEGRATED SCIENCE</span></div>
+      <div class="hud-top"><span class="clock" id="clock" aria-live="off"><b class="ck-time"><span class="ck-h">--</span><span class="ck-colon">:</span><span class="ck-m">--</span></b><span class="ck-msg">오늘의 16:30까지</span></span><span>λ 380 – 750 nm · 2028 INTEGRATED SCIENCE</span></div>
       <div class="hud-bot"><span>수능 과학탐구가 시작되는 시간. 매일의 16:30이 모여 수능 날의 16:30으로 이어지도록.</span><a class="hud-cta" href="#about"><b>박건수 통합과학</b><span>강사 소개 보기 →</span></a></div>
     </div>
   </div>
@@ -894,9 +895,10 @@ footer b{color:var(--fg)}
       if(fmt){var p=fmt.format(now).split(':');hh=+p[0];mm=+p[1];}else{hh=now.getHours();mm=now.getMinutes();}
       hE.textContent=(hh<10?'0':'')+hh; mE.textContent=(mm<10?'0':'')+mm;
       var left=16*60+30-(hh*60+mm);
-      if(left>0){var lh=Math.floor(left/60), lm=left%60; msg.textContent='16:30까지 '+(lh?lh+'시간 ':'')+lm+'분';}
-      else if(left===0){msg.textContent='지금, 16:30';}
-      else{msg.textContent='오늘의 16:30을 보냈습니다';}
+      var word='오늘의';
+      if(left<=0){left+=1440;word='내일의';}
+      var lh=Math.floor(left/60), lm=left%60;
+      msg.textContent=word+' 16:30까지 '+(lh?lh+'시간 ':'')+lm+'분';
     }
     tick(); setInterval(tick,10000);
   }
