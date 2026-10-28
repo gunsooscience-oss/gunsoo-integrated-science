@@ -88,31 +88,35 @@ ul{margin:0;padding:0;list-style:none}
 .hud-bot .hint{color:#c9ceda}
 @media (hover:none){.hud-bot .hint{display:none}}
 
-.intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:end;padding-block:56px 0}
+.intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px 40px;align-items:end;padding-block:24px 0}
 .eyebrow{font:500 13px/1.4 var(--f-mono);letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
-.intro h1{font-size:clamp(40px,6.4vw,76px);line-height:1.12;margin-top:14px;letter-spacing:-0.035em}
-.name{margin-top:18px;font-size:20px;font-weight:600}
+.intro h1{font-size:clamp(34px,4.3vw,58px);line-height:1.08;margin-top:12px;letter-spacing:-0.035em}
+.name{margin-top:14px;font-size:20px;font-weight:600}
 .name span{font:700 14px/1 var(--f-disp);letter-spacing:.06em;color:var(--mute);margin-left:10px}
-.lead{margin-top:18px;color:#cdd1db;font-size:14.5px;line-height:1.85;letter-spacing:-0.01em}
+.lead{margin-top:12px;color:#cdd1db;font-size:14.5px;line-height:1.85;letter-spacing:-0.01em}
 .lead span{display:block}
 @media (min-width:1200px){.lead span{white-space:nowrap}}
-.open-line{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600}
-.intro-text .open-line{margin-bottom:32px}
+.open-line{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600}
+.intro-text .open-line{margin-bottom:4px}
+a.open-line{text-decoration:none;color:var(--fg);width:max-content;max-width:100%;padding:8px 14px 8px 10px;margin-left:-10px;border-radius:999px;border:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+a.open-line:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 18px rgba(255,255,255,.1)}
+.ol-go{margin-left:4px;color:var(--mute);transition:transform .3s,color .3s}
+a.open-line:hover .ol-go{color:var(--fg);transform:translateX(3px)}
 .ol-meta{font-weight:500;color:#cdd1db;padding-left:10px;border-left:1px solid var(--line)}
 .open-line .dot{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 4px color-mix(in srgb,var(--sun) 25%,transparent)}
 .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;padding-bottom:32px}
 .intro .intro-text{grid-column:1;grid-row:1}
 .intro .portrait{grid-column:2;grid-row:1 / span 2}
-.career.hero-career{grid-column:1;grid-row:2;grid-template-columns:minmax(0,1fr);gap:14px;padding-top:24px;margin-bottom:52px}
+.career.hero-career{grid-column:1;grid-row:2;grid-template-columns:minmax(0,1fr);gap:8px;padding-top:16px;margin-bottom:24px}
 .hero-career>div{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:baseline;gap:12px}
 .hero-career h4{font-size:12px;white-space:nowrap}
 .career.hero-career ul{margin-top:0;display:grid;gap:0}
-.hero-career li{font-size:14px;color:#cdd1db;line-height:1.7;white-space:nowrap}
+.hero-career li{font-size:14px;color:#cdd1db;line-height:1.5;white-space:nowrap}
 
 .btn{display:inline-flex;align-items:center;text-decoration:none;font-weight:600;font-size:15px;padding:13px 18px;border-radius:11px;border:1px solid var(--line);background:var(--panel-2)}
 .btn:hover{border-color:#3a4150}
 .btn.primary{background:var(--sun);color:var(--sun-ink);border-color:var(--sun)}
-.portrait{margin:0;position:relative;align-self:end;justify-self:center;width:min(100%,420px)}
+.portrait{margin:0;position:relative;align-self:end;justify-self:center;width:min(100%,360px)}
 .portrait img{position:relative;display:block;width:100%;height:auto}
 .creds{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:1px;background:var(--line);border-block:1px solid var(--line);padding:0;max-width:none}
 .creds+.creds{border-top:0}
@@ -183,7 +187,7 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 .view.has-sub>[data-sub]{animation:subin .35s ease}
 @keyframes subin{from{opacity:.4}to{opacity:1}}
 @media (max-width:1359px){
-  .subnav{position:sticky;top:calc(61px + env(safe-area-inset-top,0px));transform:none;right:auto;flex-direction:row;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-right,0px)) 10px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .subnav{position:sticky;top:calc(61px + env(safe-area-inset-top,0px));transform:none;right:auto;flex-direction:row;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:7px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-right,0px)) 7px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .subnav::-webkit-scrollbar{display:none}
   .sub-btn{flex:none;padding:8px 12px 8px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:var(--panel);gap:8px}
   .sub-no{width:auto;height:auto;border:0;background:none}
@@ -442,9 +446,7 @@ footer b{color:var(--fg)}
     <nav class="links" aria-label="메뉴">
       <a href="#about">강사 소개</a>
       <a href="#curriculum">커리큘럼</a>
-      <a href="#winter">겨울방학</a>
       <a href="#timetable">시간표</a>
-      <a href="#faq">FAQ</a>
     </nav>
     <a class="nav-cta" href="#contact">수강 상담</a>
   </div>
@@ -503,7 +505,7 @@ footer b{color:var(--fg)}
       <h1>생각의 속도,<br>과학의 속도</h1>
       <p class="name">박건수 통합과학<span>PARK GUNSOO</span></p>
       <p class="lead"><span>기출이 없는 첫 수능 통합과학.</span><span>문항을 직접 연구하고 만들며 다양한 지역에서 수능 화학 및 통합과학을 강의해 온 박건수가</span><span>개념부터 실전까지 하나의 흐름으로 이어지는 1년을 설계합니다.</span></p>
-      <div class="open-line"><span class="dot" aria-hidden="true"></span>2027 겨울 LEVEL UP<span class="ol-meta">1월 첫 주 순차 개강</span><span class="ol-meta">고3 및 N수</span></div>
+      <a class="open-line" href="#winter"><span class="dot" aria-hidden="true"></span>2027 겨울 LEVEL UP<span class="ol-meta">1월 첫 주 순차 개강</span><span class="ol-meta">고3 및 N수</span><span class="ol-go" aria-hidden="true">→</span></a>
     </div>
     <div class="career hero-career">
       <div><h4>학력</h4><ul><li>고려대학교 기계공학과 졸업</li><li>연세대학교 대학원 통합과학교육 석사과정</li></ul></div>
@@ -575,6 +577,29 @@ footer b{color:var(--fg)}
 </div>
 
 <div class="view" data-view="curriculum" hidden>
+<section class="block" id="s-winter" data-sub="겨울 LEVEL UP">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">다가오는 겨울방학</p>
+      <h2>2027 겨울, LEVEL UP으로 통합과학의 첫 단추를 끼웁니다.</h2>
+      <p class="sub" style="max-width:none">통합과학 개념을 수능 출제자의 관점으로 다시 엮는 두 달입니다.<br>반드시 필요한 개념을 정확하게 암기하고 효율적으로 사용하는 방법을 배웁니다.</p>
+    </div>
+    <div class="winter mt-l">
+      <article class="w-card">
+        <span class="meta">겨울 정규 · 2028 수능 통합과학</span>
+        <h3>LEVEL UP 개념반</h3>
+        <div class="w-rows">
+          <div><span class="k">대상</span><span>고3 및 N수</span></div>
+          <div><span class="k">개강</span><span>1월 첫 주 순차 개강</span></div>
+          <div><span class="k">회차</span><span>8회차</span></div>
+          <div><span class="k">교재</span><span>LEVEL UP 개념편 · 월간지 RAID</span></div>
+        </div>
+      </article>
+    </div>
+    <p class="w-note">학원별 개강 요일과 시간은 각 학원으로 문의해 주세요. 아래 시간표와 수강 상담에서 바로 확인할 수 있습니다.</p>
+  </div>
+</section>
+
 <section class="block" id="s-curriculum" data-sub="커리큘럼">
   <div class="wrap">
     <div class="sec-head">
@@ -661,35 +686,9 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-<nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#winter"><span class="next-k">다음</span><span class="next-t">겨울방학 LEVEL UP</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#timetable"><span class="next-k">바로 가기</span><span class="next-t">시간표</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
-</div>
-
-<div class="view" data-view="winter" hidden>
-<section class="block" id="s-winter">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">다가오는 겨울방학</p>
-      <h2>2027 겨울, LEVEL UP으로 통합과학의 첫 단추를 끼웁니다.</h2>
-      <p class="sub" style="max-width:none">통합과학 개념을 수능 출제자의 관점으로 다시 엮는 두 달입니다.<br>반드시 필요한 개념을 정확하게 암기하고 효율적으로 사용하는 방법을 배웁니다.</p>
-    </div>
-    <div class="winter mt-l">
-      <article class="w-card">
-        <span class="meta">겨울 정규 · 2028 수능 통합과학</span>
-        <h3>LEVEL UP 개념반</h3>
-        <div class="w-rows">
-          <div><span class="k">대상</span><span>고3 및 N수</span></div>
-          <div><span class="k">개강</span><span>1월 첫 주 순차 개강</span></div>
-          <div><span class="k">회차</span><span>8회차</span></div>
-          <div><span class="k">교재</span><span>LEVEL UP 개념편 · 월간지 RAID</span></div>
-        </div>
-      </article>
-    </div>
-    <p class="w-note">학원별 개강 요일과 시간은 각 학원으로 문의해 주세요. 아래 시간표와 수강 상담에서 바로 확인할 수 있습니다.</p>
-  </div>
-</section>
-
 <nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#timetable"><span class="next-k">다음</span><span class="next-t">시간표</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#contact"><span class="next-k">바로 가기</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
+
 
 <div class="view" data-view="timetable" hidden>
 <section class="block" id="s-timetable">
@@ -711,30 +710,9 @@ footer b{color:var(--fg)}
 <nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#contact"><span class="next-k">다음</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#faq"><span class="next-k">바로 가기</span><span class="next-t">FAQ</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
 
-<div class="view" data-view="faq" hidden>
-<section class="block" id="s-faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">자주 묻는 질문</p>
-      <h2>궁금한 점을 먼저 풀어 드립니다.</h2>
-    </div>
-    <div class="faq mt-l">
-      <details><summary>학교에서 통합과학을 배웠는데, 수능 대비를 따로 해야 하나요?</summary><p>학교 내신은 정해진 범위 안에서 출제되지만, 수능은 여러 단원을 연결해 묻는 문항이 많습니다. LEVEL UP에서 배운 개념을 수능 출제자의 관점으로 다시 엮고, SKILL UP부터 연결 훈련을 이어 갑니다.</p></details>
-      <details><summary>기출이 없는데 무엇으로 연습하나요?</summary><p>박건수T가 연구소와 출제팀에서 직접 만든 문항으로 연습합니다. 자체 N제, 극딜 모의고사 S1~S4 16회분, MAikers 모의고사 16회분, 월간지 RAID 10권, 그리고 평가원 모의평가 직후 나오는 분석서 UPDATE가 1년 동안 이어집니다.</p></details>
-      <details><summary>N수생인데 통합과학을 처음 공부해도 괜찮을까요?</summary><p>네. 2028 수능 통합과학은 모든 수험생에게 처음 치르는 시험입니다. LEVEL UP은 개념을 이해하는 단계부터 시작합니다. 매주 개념 복습 테스트를 보고, 통과할 때까지 재시험을 무제한으로 볼 수 있어 빈틈을 남기지 않습니다.</p></details>
-      <details><summary>결석하면 수업을 어떻게 따라가나요?</summary><p>개인 홈페이지에 복습 영상과 추가 강의 영상이 올라갑니다. 결석한 주의 내용도 영상과 과제로 따라올 수 있습니다.</p></details>
-      <details><summary>학부모는 학습 상황을 어떻게 확인하나요?</summary><p>수업이 끝나면 테스트와 과제 결과, 누적 성취도와 약점을 문자로 보내 드립니다. 주기적인 학생 상담 내용도 함께 공유합니다.</p></details>
-      <details><summary>질문은 언제, 어떻게 할 수 있나요?</summary><p>수업 전후에 직접 질문할 수 있고, 수업 밖에서는 온라인으로 실시간 질문을 받습니다.</p></details>
-      <details><summary>수강 신청과 상담은 어디로 하면 되나요?</summary><p>다니실 학원으로 바로 문의해 주세요. 수강 상담 메뉴에 학원별 연락처를 정리해 두었습니다.</p></details>
-    </div>
-  </div>
-</section>
-
-<nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#contact"><span class="next-k">다음</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#home"><span class="next-k">처음으로</span><span class="next-t">메인</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
-</div>
 
 <div class="view" data-view="contact" hidden>
-<section class="block" id="s-contact">
+<section class="block" id="s-contact" data-sub="학원별 연락처">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">수강 문의</p>
@@ -756,6 +734,24 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
+<section class="block" id="s-faq" data-sub="FAQ">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">자주 묻는 질문</p>
+      <h2>궁금한 점을 먼저 풀어 드립니다.</h2>
+    </div>
+    <div class="faq mt-l">
+      <details><summary>학교에서 통합과학을 배웠는데, 수능 대비를 따로 해야 하나요?</summary><p>학교 내신은 정해진 범위 안에서 출제되지만, 수능은 여러 단원을 연결해 묻는 문항이 많습니다. LEVEL UP에서 배운 개념을 수능 출제자의 관점으로 다시 엮고, SKILL UP부터 연결 훈련을 이어 갑니다.</p></details>
+      <details><summary>기출이 없는데 무엇으로 연습하나요?</summary><p>박건수T가 연구소와 출제팀에서 직접 만든 문항으로 연습합니다. 자체 N제, 극딜 모의고사 S1~S4 16회분, MAikers 모의고사 16회분, 월간지 RAID 10권, 그리고 평가원 모의평가 직후 나오는 분석서 UPDATE가 1년 동안 이어집니다.</p></details>
+      <details><summary>N수생인데 통합과학을 처음 공부해도 괜찮을까요?</summary><p>네. 2028 수능 통합과학은 모든 수험생에게 처음 치르는 시험입니다. LEVEL UP은 개념을 이해하는 단계부터 시작합니다. 매주 개념 복습 테스트를 보고, 통과할 때까지 재시험을 무제한으로 볼 수 있어 빈틈을 남기지 않습니다.</p></details>
+      <details><summary>결석하면 수업을 어떻게 따라가나요?</summary><p>개인 홈페이지에 복습 영상과 추가 강의 영상이 올라갑니다. 결석한 주의 내용도 영상과 과제로 따라올 수 있습니다.</p></details>
+      <details><summary>학부모는 학습 상황을 어떻게 확인하나요?</summary><p>수업이 끝나면 테스트와 과제 결과, 누적 성취도와 약점을 문자로 보내 드립니다. 주기적인 학생 상담 내용도 함께 공유합니다.</p></details>
+      <details><summary>질문은 언제, 어떻게 할 수 있나요?</summary><p>수업 전후에 직접 질문할 수 있고, 수업 밖에서는 온라인으로 실시간 질문을 받습니다.</p></details>
+      <details><summary>수강 신청과 상담은 어디로 하면 되나요?</summary><p>다니실 학원으로 바로 문의해 주세요. 수강 상담 메뉴에 학원별 연락처를 정리해 두었습니다.</p></details>
+    </div>
+  </div>
+</section>
+
 <nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#timetable"><span class="next-k">다시 보기</span><span class="next-t">시간표</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#home"><span class="next-k">처음으로</span><span class="next-t">메인</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
 
@@ -773,10 +769,12 @@ footer b{color:var(--fg)}
   var views=[].slice.call(document.querySelectorAll('.view'));
   var names=views.map(function(v){return v.getAttribute('data-view');});
   function show(){
-    var h=(location.hash||'').slice(1);
+    var h=(location.hash||'').slice(1), sub=0;
+    var alias={winter:['curriculum',0],faq:['contact',1]};
+    if(alias[h]){sub=alias[h][1];h=alias[h][0];}
     if(names.indexOf(h)<0) h='home';
     views.forEach(function(v){v.hidden=v.getAttribute('data-view')!==h;});
-    views.forEach(function(v){if(!v.hidden){try{v.dispatchEvent(new CustomEvent('viewshow'));}catch(e){}}});
+    views.forEach(function(v){if(!v.hidden){try{v.dispatchEvent(new CustomEvent('viewshow',{detail:{sub:sub}}));}catch(e){}}});
     document.body.setAttribute('data-view',h);
     document.querySelectorAll('.nav a[href^="#"]').forEach(function(a){
       if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
@@ -825,7 +823,7 @@ footer b{color:var(--fg)}
       if(!noScroll) window.scrollTo(0,0);
     }
     if(nextA) nextA.addEventListener('click',function(e){if(cur<last){e.preventDefault();go(cur+1);}});
-    view.addEventListener('viewshow',function(){go(0,true);});
+    view.addEventListener('viewshow',function(e){var d=e&&e.detail&&e.detail.sub;go(typeof d==='number'&&d<=last?d:0,true);});
     document.addEventListener('keydown',function(e){
       if(view.hidden||e.altKey||e.ctrlKey||e.metaKey) return;
       var t=e.target&&e.target.tagName; if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
@@ -833,6 +831,7 @@ footer b{color:var(--fg)}
     });
     go(0,true);
   });
+  window.dispatchEvent(new HashChangeEvent('hashchange'));
 })();
 
 /* 시간표 */
