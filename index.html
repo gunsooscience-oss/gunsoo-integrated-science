@@ -204,6 +204,8 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 /* 2) 사진 뒤 후광 */
 .portrait::before{content:"";position:absolute;left:-18%;right:-18%;top:2%;height:70%;background:radial-gradient(50% 50% at 50% 45%,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,transparent 72%);pointer-events:none}
 .portrait img{filter:drop-shadow(-3px -2px 9px rgba(255,120,110,.13)) drop-shadow(3px -2px 9px rgba(80,170,255,.13)) drop-shadow(0 -6px 24px rgba(255,255,255,.16))}
+.ot.playing{cursor:default}
+.ot.playing iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit}
 .ot-photo{filter:drop-shadow(0 -4px 18px rgba(255,255,255,.14))}
 /* 4) 16:30 시계 */
 .clock{display:inline-flex;align-items:baseline;gap:10px;color:#8b92a1}
@@ -610,7 +612,7 @@ footer b{color:var(--fg)}
       <p class="eyebrow">영상으로 먼저 보기</p>
       <h2>박건수를 영상으로 먼저 만나보세요.</h2>
     </div>
-    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
+    <a class="ot mt-l" data-yt-id="1zB4Acp4tFk" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
       <span class="ot-glow" aria-hidden="true"></span>
       <span class="ot-text">
         <span class="tag">ORIENTATION</span>
@@ -810,7 +812,7 @@ footer b{color:var(--fg)}
     function go(i,noScroll){
       if(i<0||i>last) return;
       cur=i;
-      subs.forEach(function(sec,j){sec.hidden=j!==i;});
+      subs.forEach(function(sec,j){var was=sec.hidden;sec.hidden=j!==i;if(was!==sec.hidden){try{sec.dispatchEvent(new CustomEvent(sec.hidden?'subhide':'subshow'));}catch(e){}}});
       if(window.__rise) window.__rise(subs[i]);
       btns.forEach(function(b,j){if(j===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');});
       prevB.disabled=i===0; nextB.disabled=i===last;
@@ -874,6 +876,24 @@ footer b{color:var(--fg)}
     }
     tick(); setInterval(tick,10000);
   }
+})();
+/* OT 영상: 누르면 바로 재생 */
+(function(){
+  var ot=document.querySelector('.ot[data-yt-id]'); if(!ot) return;
+  var host=location.hostname;
+  var canEmbed=/(^|\.)pgsscience\.co\.kr$/.test(host)||/github\.io$/.test(host)||host==='localhost'||host==='127.0.0.1';
+  if(!canEmbed) return;
+  var sec=ot.closest('section'), view=ot.closest('.view'), original=ot.innerHTML;
+  function play(){
+    if(ot.classList.contains('playing')) return;
+    var id=ot.getAttribute('data-yt-id');
+    ot.classList.add('playing');
+    ot.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1&modestbranding=1" title="2028 수능 통합과학 OT" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  }
+  function stop(){ if(!ot.classList.contains('playing')) return; ot.classList.remove('playing'); ot.innerHTML=original; }
+  ot.addEventListener('click',function(e){ e.preventDefault(); play(); });
+  if(sec){ sec.addEventListener('subshow',play); sec.addEventListener('subhide',stop); }
+  window.addEventListener('hashchange',function(){ if(view&&view.hidden) stop(); });
 })();
 
 /* 시간표 */
