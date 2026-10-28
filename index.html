@@ -184,8 +184,6 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 .sub-arr{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:var(--panel);color:var(--fg);cursor:pointer;font-size:14px}
 .sub-arr:disabled{opacity:.3;cursor:default}
 .sub-arr:not(:disabled):hover{border-color:rgba(255,255,255,.45);box-shadow:0 0 12px rgba(255,255,255,.2)}
-.view.has-sub>[data-sub]{animation:subin .35s ease}
-@keyframes subin{from{opacity:.4}to{opacity:1}}
 @media (max-width:1359px){
   .subnav{position:sticky;top:calc(61px + env(safe-area-inset-top,0px));transform:none;right:auto;flex-direction:row;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:7px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-right,0px)) 7px max(20px,calc((100% - 1120px) / 2),env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .subnav::-webkit-scrollbar{display:none}
@@ -197,7 +195,40 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
   .sub-arrows{display:none}
 }
 @media (max-width:760px){.subnav{top:calc(104px + env(safe-area-inset-top,0px))}}
-@media (prefers-reduced-motion:reduce){.view.has-sub>[data-sub]{animation:none}.sub-no,.sub-lb{transition:none}}
+@media (prefers-reduced-motion:reduce){.sub-no,.sub-lb{transition:none}}
+/* ===== 빛 효과 ===== */
+/* 1) 마우스를 따라다니는 빛 */
+.glowable{position:relative;background-image:radial-gradient(280px circle at var(--mx,-999px) var(--my,-999px),rgba(255,255,255,.075),transparent 65%)!important}
+.glowable::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:radial-gradient(200px circle at var(--mx,-999px) var(--my,-999px),rgba(255,255,255,.85),rgba(255,255,255,0) 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .3s;pointer-events:none}
+.glowable:hover::after{opacity:1}
+/* 2) 사진 뒤 후광 */
+.portrait::before{content:"";position:absolute;left:-18%;right:-18%;top:2%;height:70%;background:radial-gradient(50% 50% at 50% 45%,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,transparent 72%);pointer-events:none}
+.portrait img{filter:drop-shadow(-3px -2px 9px rgba(255,120,110,.13)) drop-shadow(3px -2px 9px rgba(80,170,255,.13)) drop-shadow(0 -6px 24px rgba(255,255,255,.16))}
+.ot-photo{filter:drop-shadow(0 -4px 18px rgba(255,255,255,.14))}
+/* 3) 화면 전환 빛줄기 */
+.sweep{position:fixed;inset:0;z-index:70;pointer-events:none;overflow:hidden;opacity:0}
+.sweep::before{content:"";position:absolute;top:0;bottom:0;left:0;width:34vw;background:linear-gradient(90deg,transparent,rgba(255,255,255,.05) 30%,rgba(255,255,255,.55) 49.6%,#fff 50%,rgba(255,255,255,.55) 50.4%,rgba(255,255,255,.05) 70%,transparent);filter:blur(1px);transform:translateX(-40vw)}
+.sweep.run{opacity:1}
+.sweep.run::before{animation:sweep .62s cubic-bezier(.55,.06,.3,1) forwards}
+@keyframes sweep{to{transform:translateX(110vw)}}
+/* 4) 16:30 시계 */
+.clock{display:inline-flex;align-items:baseline;gap:10px;color:#c9ceda}
+.ck-time{font:700 16px/1 var(--f-disp);color:var(--fg);letter-spacing:.02em;font-variant-numeric:tabular-nums;text-shadow:0 0 12px rgba(255,255,255,.35)}
+.ck-colon{display:inline-block;margin:0 1px;animation:blink 1s steps(1,end) infinite}
+@keyframes blink{50%{opacity:0}}
+.ck-msg{font:400 12px/1.4 var(--f-mono);letter-spacing:.04em}
+/* 5) 단계별 파장 */
+.stage-card{border-color:rgba(var(--t),.28)}
+.stage-card::before{background:radial-gradient(50% 50% at 50% 50%,rgba(var(--t),.2),transparent 70%)}
+.stage-card h3{text-shadow:0 0 18px rgba(255,255,255,.3),0 0 30px rgba(var(--t),.35)}
+.stage-card .when{display:flex;justify-content:space-between;gap:8px}
+.stage-card .nm{order:2;color:rgb(var(--t));opacity:.85;text-shadow:0 0 10px rgba(var(--t),.6)}
+.stage-card.glowable::after{background:radial-gradient(200px circle at var(--mx,-999px) var(--my,-999px),rgba(var(--t),.9),rgba(var(--t),0) 70%)}
+/* 8) 순서대로 등장 */
+.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none}.sweep{display:none}.ck-colon{animation:none}.glowable::after{transition:none}}
+@media (max-width:520px){.ck-time{font-size:14px}.ck-msg{font-size:11px}}
 /* 공통 섹션 */
 section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .sec-head{max-width:760px}
@@ -459,7 +490,7 @@ footer b{color:var(--fg)}
     <canvas id="prism" role="img" aria-label="검은 16:30 글자 뒤에서 빛이 새어 나와 무지개빛 후광과 빛줄기가 퍼지는 그래픽"></canvas>
     <div class="fallback" aria-hidden="true">16:30</div>
     <div class="hud wrap" aria-hidden="true">
-      <div class="hud-top"><span>λ 380 – 750 nm</span><span>2028 INTEGRATED SCIENCE</span></div>
+      <div class="hud-top"><span class="clock" id="clock" aria-live="off"><b class="ck-time"><span class="ck-h">--</span><span class="ck-colon">:</span><span class="ck-m">--</span></b><span class="ck-msg">16:30까지</span></span><span>λ 380 – 750 nm · 2028 INTEGRATED SCIENCE</span></div>
       <div class="hud-bot"><span>수능 과학탐구가 시작되는 시간. 매일의 16:30이 모여 수능 날의 16:30으로 이어지도록.</span><a class="hud-cta" href="#about"><b>박건수 통합과학</b><span>강사 소개 보기 →</span></a></div>
     </div>
   </div>
@@ -608,10 +639,10 @@ footer b{color:var(--fg)}
       <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
     </div>
     <div class="road mt-l">
-      <div class="stage-card" style="--c:#ff6a4d"><span class="when">01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
-      <div class="stage-card" style="--c:#ffd23a"><span class="when">02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
-      <div class="stage-card" style="--c:#3ccf86"><span class="when">03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
-      <div class="stage-card" style="--c:#6a7bff"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
+      <div class="stage-card" style="--t:255,106,90"><span class="when"><span class="nm">λ 700 nm</span>01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
+      <div class="stage-card" style="--t:255,194,74"><span class="when"><span class="nm">λ 590 nm</span>02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
+      <div class="stage-card" style="--t:74,222,128"><span class="when"><span class="nm">λ 520 nm</span>03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
+      <div class="stage-card" style="--t:139,123,255"><span class="when"><span class="nm">λ 420 nm</span>04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
     </div>
     <div class="glow-line" aria-hidden="true"></div>
   </div>
@@ -814,6 +845,7 @@ footer b{color:var(--fg)}
       if(i<0||i>last) return;
       cur=i;
       subs.forEach(function(sec,j){sec.hidden=j!==i;});
+      if(window.__rise) window.__rise(subs[i]);
       btns.forEach(function(b,j){if(j===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');});
       prevB.disabled=i===0; nextB.disabled=i===last;
       if(nextA){
@@ -832,6 +864,55 @@ footer b{color:var(--fg)}
     go(0,true);
   });
   window.dispatchEvent(new HashChangeEvent('hashchange'));
+})();
+/* 빛 효과: 따라다니는 빛, 화면 전환, 순서 등장, 시계 */
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hover=window.matchMedia&&matchMedia('(hover: hover)').matches;
+  var sel='.stage-card,.aff,.cell.suneung,.cell.naesin,.cell.nall,.branch,.next,.pillars.long .pillar,.yt,.ot,.w-card';
+  [].slice.call(document.querySelectorAll(sel)).forEach(function(el){el.classList.add('glowable');});
+  if(hover&&!reduce){
+    document.addEventListener('pointermove',function(e){
+      var el=e.target.closest&&e.target.closest('.glowable'); if(!el) return;
+      var r=el.getBoundingClientRect();
+      el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px');
+    },{passive:true});
+  }
+  var items='.sec-head,.intro-text>*,.hero-career>div,.portrait,.aff-group,.road>*,.glow-line,.pillars>*,.motto .wrap>*,.ot,.yt,.care-wrap,.winter>*,.w-note,.legend,.filters,.tt>.cell:not(.empty),.contact>*,.channels,.faq>details,.next-nav .next';
+  window.__rise=function(root){
+    if(reduce||!root) return;
+    var list=[].slice.call(root.querySelectorAll(items)).filter(function(el){return !el.closest('[hidden]');});
+    list.forEach(function(el,i){el.classList.remove('rise');el.style.setProperty('--i',Math.min(i,10));});
+    void document.body.offsetWidth;
+    list.forEach(function(el){el.classList.add('rise');});
+  };
+  var sweep=document.createElement('div'); sweep.className='sweep'; sweep.setAttribute('aria-hidden','true'); document.body.appendChild(sweep);
+  window.addEventListener('hashchange',function(){
+    if(reduce) return;
+    sweep.classList.remove('run'); void sweep.offsetWidth; sweep.classList.add('run');
+    clearTimeout(sweep._t); sweep._t=setTimeout(function(){sweep.classList.remove('run');},700);
+  });
+  [].slice.call(document.querySelectorAll('.view')).forEach(function(v){
+    v.addEventListener('viewshow',function(){ if(!v.classList.contains('has-sub')) window.__rise(v); });
+  });
+  var vis=document.querySelector('.view:not([hidden])'); if(vis&&!vis.classList.contains('has-sub')) window.__rise(vis);
+  // 16:30 시계 (한국 시간)
+  var ck=document.getElementById('clock');
+  if(ck){
+    var hE=ck.querySelector('.ck-h'), mE=ck.querySelector('.ck-m'), msg=ck.querySelector('.ck-msg');
+    var fmt;
+    try{fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false});}catch(e){fmt=null;}
+    function tick(){
+      var now=new Date(), hh, mm;
+      if(fmt){var p=fmt.format(now).split(':');hh=+p[0];mm=+p[1];}else{hh=now.getHours();mm=now.getMinutes();}
+      hE.textContent=(hh<10?'0':'')+hh; mE.textContent=(mm<10?'0':'')+mm;
+      var left=16*60+30-(hh*60+mm);
+      if(left>0){var lh=Math.floor(left/60), lm=left%60; msg.textContent='16:30까지 '+(lh?lh+'시간 ':'')+lm+'분';}
+      else if(left===0){msg.textContent='지금, 16:30';}
+      else{msg.textContent='오늘의 16:30을 보냈습니다';}
+    }
+    tick(); setInterval(tick,10000);
+  }
 })();
 
 /* 시간표 */
