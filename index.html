@@ -118,6 +118,16 @@ ul{margin:0;padding:0;list-style:none}
 .creds .need{margin-top:8px;display:flex;width:max-content}
 .creds b{display:block;color:var(--fg);font-size:15px;font-weight:600}
 
+/* 메뉴별 화면 */
+body[data-view="home"] .stage{height:calc(100vh - 61px - 250px);height:calc(100svh - 61px - 250px - env(safe-area-inset-top,0px));min-height:340px}
+section.block.home-voices{padding-block:28px 40px;border-bottom:0}
+.home-voices .sec-head{margin-top:0}
+.home-voices .sec-head h2{font-size:clamp(20px,2.4vw,26px)}
+.home-voices .marquee{margin-top:20px}
+body[data-view="home"] footer{display:none}
+.hero-intro{border-bottom:1px solid var(--line)}
+.links a[aria-current="page"]{color:var(--fg);background:var(--panel-2)}
+.nav-cta[aria-current="page"]{box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--sun)}
 /* 공통 섹션 */
 section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .sec-head{max-width:760px}
@@ -322,8 +332,10 @@ footer b{color:var(--fg)}
   .story{grid-template-columns:minmax(0,1fr);gap:24px}
 }
 @media (max-width:760px){
-  .links,.need-toggle{display:none}
+  .nav-in{flex-wrap:wrap;height:auto;padding-block:10px;row-gap:8px}
   .nav-cta{margin-left:auto}
+  .links{order:3;width:100%;margin-left:0}
+  body[data-view="home"] .stage{height:calc(100svh - 104px - 250px - env(safe-area-inset-top,0px))}
   .intro{grid-template-columns:minmax(0,1fr);gap:8px;padding-top:40px}
   .portrait{order:-1;width:min(70%,300px)}
   .intro .intro-text,.intro .portrait,.intro .career.hero-career{grid-column:auto;grid-row:auto}
@@ -353,13 +365,12 @@ footer b{color:var(--fg)}
 <body>
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top"><span class="brand-mark">16:30</span><span>박건수 통합과학</span></a>
-    <nav class="links" aria-label="페이지 섹션">
+    <a class="brand" href="#home"><span class="brand-mark">16:30</span><span>박건수 통합과학</span></a>
+    <nav class="links" aria-label="메뉴">
+      <a href="#about">강사 소개</a>
       <a href="#curriculum">커리큘럼</a>
       <a href="#winter">겨울방학</a>
       <a href="#timetable">시간표</a>
-      <a href="#teacher">강사</a>
-      <a href="#voices">후기</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="nav-cta" href="#contact">수강 상담</a>
@@ -367,6 +378,7 @@ footer b{color:var(--fg)}
 </header>
 
 <main>
+<div class="view" data-view="home">
 <section class="hero" id="top">
   <div class="stage" id="stage">
     <canvas id="prism" role="img" aria-label="검은 16:30 글자 뒤에서 빛이 새어 나와 무지개빛 후광과 빛줄기가 퍼지는 그래픽"></canvas>
@@ -377,6 +389,41 @@ footer b{color:var(--fg)}
     </div>
   </div>
 
+</section>
+
+
+<section class="block home-voices" id="s-voices">
+  <div class="wrap">
+    <div class="sec-head mt-l">
+      <p class="eyebrow">수강 후기</p>
+      <h2>학생들이 말하는 박건수</h2>
+    </div>
+  </div>
+  <div class="marquee" aria-label="수강 후기">
+    <div class="track">
+      <div class="set">
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
+        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
+        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
+        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
+      </div>
+      <div class="set" aria-hidden="true">
+        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
+        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
+        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
+        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
+        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
+        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="about" hidden>
+<section class="hero-intro">
   <div class="intro wrap">
     <div class="intro-text">
       <p class="eyebrow">2028 수능 통합과학 · 과학하는 박건수</p>
@@ -414,7 +461,7 @@ footer b{color:var(--fg)}
   </ul>
 </section>
 
-<section class="block" id="proof">
+<section class="block" id="s-proof">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">숫자로 보는 박건수 통합과학</p>
@@ -427,89 +474,10 @@ footer b{color:var(--fg)}
       <div class="stat"><div class="num">10<small>권</small></div><div class="lab">월간지 RAID</div><div class="desc">1월부터 10월까지<br>학습 시기와 과정에 따라<br>반드시 필요한 엄선 문항</div></div>
     </div>
 
-    <div class="sec-head mt-l" id="voices">
-      <p class="eyebrow">수강 후기</p>
-      <h2>학생들이 말하는 박건수</h2>
-    </div>
-  </div>
-  <div class="marquee" aria-label="수강 후기">
-    <div class="track">
-      <div class="set">
-        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
-        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
-        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
-        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
-        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
-        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
-      </div>
-      <div class="set" aria-hidden="true">
-        <figure class="rv"><p>교재에 좋은 문제들이 정말 많이 실려있고, 선생님이 가르치는 데 진심이다.</p><figcaption class="who">1630 산본 · 홍○○</figcaption></figure>
-        <figure class="rv"><p>선생님이 잘 가르치시는 건 당연하고, 자체적으로 만드시는 모의고사나 변형문제들의 퀄리티가 좋습니다.</p><figcaption class="who">러셀 목동 · 김○○</figcaption></figure>
-        <figure class="rv"><p>각 파트에 필요한 기술을 알려주어 도움이 많이 되었다. 자체 교재에서 연습을 많이 할 수 있어 좋았다.</p><figcaption class="who">해냄 평촌 · 정○○</figcaption></figure>
-        <figure class="rv"><p>점수 수직 상승의 비결 ▶ 박건수. 문제를 모두 풀 수 있게 만들어주는 마법을 펼치심.</p><figcaption class="who">러셀 목동 · 황○○</figcaption></figure>
-        <figure class="rv"><p>등급컷이 왜 나날이 올라가는지 알 것 같은 압도적인 강의력과 유머러스한 수업 분위기.</p><figcaption class="who">러셀 영통 · 박○○</figcaption></figure>
-        <figure class="rv"><p>모든 과목 통틀어 가장 재밌고, 다음 수업이 기대되는 수업을 경험할 수 있었습니다.</p><figcaption class="who">러셀 영통 · 윤○○</figcaption></figure>
-      </div>
-    </div>
   </div>
 </section>
 
-<section class="block" id="curriculum">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">커리큘럼</p>
-      <h2>1월에 시작해 10월에 완성하는 네 단계.</h2>
-      <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
-    </div>
-    <div class="road mt-l">
-      <div class="stage-card" style="--c:#ff6a4d"><span class="when">01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
-      <div class="stage-card" style="--c:#ffd23a"><span class="when">02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
-      <div class="stage-card" style="--c:#3ccf86"><span class="when">03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
-      <div class="stage-card" style="--c:#6a7bff"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
-    </div>
-    <div class="glow-line" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="block" id="winter">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">다가오는 겨울방학</p>
-      <h2>2027 겨울, LEVEL UP으로 통합과학의 첫 단추를 끼웁니다.</h2>
-      <p class="sub" style="max-width:none">통합과학 개념을 수능 출제자의 관점으로 다시 엮는 두 달입니다.<br>반드시 필요한 개념을 정확하게 암기하고 효율적으로 사용하는 방법을 배웁니다.</p>
-    </div>
-    <div class="winter mt-l">
-      <article class="w-card">
-        <span class="meta">겨울 정규 · 2028 수능 통합과학</span>
-        <h3>LEVEL UP 개념반</h3>
-        <div class="w-rows">
-          <div><span class="k">대상</span><span>고3 및 N수</span></div>
-          <div><span class="k">개강</span><span>1월 첫 주 순차 개강</span></div>
-          <div><span class="k">회차</span><span>8회차</span></div>
-          <div><span class="k">교재</span><span>LEVEL UP 개념편 · 월간지 RAID</span></div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="timetable">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">주간 시간표</p>
-      <h2>가까운 학원, 편한 시간으로 고르세요.</h2>
-    </div>
-    <div class="legend mt-l" style="margin-top:32px">
-      <span><i style="background:var(--sun)"></i>수능</span>
-      <span><i style="background:var(--sky)"></i>고1 내신</span>
-      <span><i style="border:1.5px solid var(--fg)"></i>N종합</span>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="학원별 보기"></div>
-    <div class="tt" id="tt"></div>
-  </div>
-</section>
-
-<section class="block" id="teacher">
+<section class="block" id="s-teacher">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">왜 박건수 통합과학인가</p>
@@ -523,7 +491,9 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-<section class="block" id="reviews">
+
+
+<section class="block" id="s-reviews">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">유튜브</p>
@@ -547,7 +517,7 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-<section class="block" id="videos">
+<section class="block" id="s-videos">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">영상으로 먼저 보기</p>
@@ -565,7 +535,34 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-<section class="block" id="care">
+<section class="motto">
+  <div class="wrap">
+    <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
+    <h2>과정은 치열하게, 해결은 단순하게.</h2>
+    <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="curriculum" hidden>
+<section class="block" id="s-curriculum">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">커리큘럼</p>
+      <h2>1월에 시작해 10월에 완성하는 네 단계.</h2>
+      <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
+    </div>
+    <div class="road mt-l">
+      <div class="stage-card" style="--c:#ff6a4d"><span class="when">01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
+      <div class="stage-card" style="--c:#ffd23a"><span class="when">02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
+      <div class="stage-card" style="--c:#3ccf86"><span class="when">03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
+      <div class="stage-card" style="--c:#6a7bff"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
+    </div>
+    <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="s-care">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">관리 프로그램</p>
@@ -591,16 +588,52 @@ footer b{color:var(--fg)}
     </div>
   </div>
 </section>
+</div>
 
-<section class="motto">
+<div class="view" data-view="winter" hidden>
+<section class="block" id="s-winter">
   <div class="wrap">
-    <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
-    <h2>과정은 치열하게, 해결은 단순하게.</h2>
-    <div class="glow-line" aria-hidden="true"></div>
+    <div class="sec-head">
+      <p class="eyebrow">다가오는 겨울방학</p>
+      <h2>2027 겨울, LEVEL UP으로 통합과학의 첫 단추를 끼웁니다.</h2>
+      <p class="sub" style="max-width:none">통합과학 개념을 수능 출제자의 관점으로 다시 엮는 두 달입니다.<br>반드시 필요한 개념을 정확하게 암기하고 효율적으로 사용하는 방법을 배웁니다.</p>
+    </div>
+    <div class="winter mt-l">
+      <article class="w-card">
+        <span class="meta">겨울 정규 · 2028 수능 통합과학</span>
+        <h3>LEVEL UP 개념반</h3>
+        <div class="w-rows">
+          <div><span class="k">대상</span><span>고3 및 N수</span></div>
+          <div><span class="k">개강</span><span>1월 첫 주 순차 개강</span></div>
+          <div><span class="k">회차</span><span>8회차</span></div>
+          <div><span class="k">교재</span><span>LEVEL UP 개념편 · 월간지 RAID</span></div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
+</div>
 
-<section class="block" id="faq">
+<div class="view" data-view="timetable" hidden>
+<section class="block" id="s-timetable">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">주간 시간표</p>
+      <h2>가까운 학원, 편한 시간으로 고르세요.</h2>
+    </div>
+    <div class="legend mt-l" style="margin-top:32px">
+      <span><i style="background:var(--sun)"></i>수능</span>
+      <span><i style="background:var(--sky)"></i>고1 내신</span>
+      <span><i style="border:1.5px solid var(--fg)"></i>N종합</span>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="학원별 보기"></div>
+    <div class="tt" id="tt"></div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="faq" hidden>
+<section class="block" id="s-faq">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">자주 묻는 질문</p>
@@ -617,8 +650,10 @@ footer b{color:var(--fg)}
     </div>
   </div>
 </section>
+</div>
 
-<section class="block" id="contact">
+<div class="view" data-view="contact" hidden>
+<section class="block" id="s-contact">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">수강 문의</p>
@@ -639,6 +674,8 @@ footer b{color:var(--fg)}
     </div>
   </div>
 </section>
+</div>
+
 </main>
 
 <footer>
@@ -649,6 +686,23 @@ footer b{color:var(--fg)}
 </footer>
 
 <script>
+/* 메뉴별 화면 전환 */
+(function(){
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var names=views.map(function(v){return v.getAttribute('data-view');});
+  function show(){
+    var h=(location.hash||'').slice(1);
+    if(names.indexOf(h)<0) h='home';
+    views.forEach(function(v){v.hidden=v.getAttribute('data-view')!==h;});
+    document.body.setAttribute('data-view',h);
+    document.querySelectorAll('.nav a[href^="#"]').forEach(function(a){
+      if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);
+  show();
+})();
 
 /* 시간표 */
 (function(){
