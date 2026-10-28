@@ -182,7 +182,7 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){.next-a,.next,.hud-cta{transition:none}}
 /* 섹션 선택 (오른쪽 레일 · 모바일 탭) */
 .subnav{position:fixed;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.subnav::before{content:"";position:absolute;right:26px;top:22px;bottom:96px;width:1px;background:linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.35),rgba(255,255,255,.05));pointer-events:none}
+.subnav::before{content:"";position:absolute;right:26px;top:22px;bottom:22px;width:1px;background:linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.35),rgba(255,255,255,.05));pointer-events:none}
 .sub-btn{position:relative;display:flex;align-items:center;justify-content:flex-end;padding:3px;border:0;background:transparent;color:var(--mute);cursor:pointer;font:500 13px/1 var(--f-body)}
 .sub-no{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.42);background:#0d0f14;font:700 13px/1 var(--f-disp);color:#dfe3ea;box-shadow:0 0 14px rgba(255,255,255,.12);transition:box-shadow .3s,border-color .3s,color .3s,background .3s,transform .3s}
 .sub-lb{position:absolute;right:calc(100% + 6px);top:50%;transform:translate(6px,-50%);white-space:nowrap;padding:8px 12px;border-radius:999px;background:rgba(16,18,24,.92);border:1px solid rgba(255,255,255,.2);color:var(--fg);font-weight:600;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
@@ -822,13 +822,7 @@ footer b{color:var(--fg)}
       b.addEventListener('click',function(){go(i);});
       rail.appendChild(b); return b;
     });
-    var arrows=document.createElement('div'); arrows.className='sub-arrows';
-    arrows.innerHTML='<button type="button" class="sub-arr" aria-label="이전 섹션">←</button><button type="button" class="sub-arr" aria-label="다음 섹션">→</button>';
-    rail.appendChild(arrows);
     view.insertBefore(rail,view.firstChild);
-    var prevB=arrows.children[0], nextB=arrows.children[1];
-    prevB.addEventListener('click',function(){go(cur-1);});
-    nextB.addEventListener('click',function(){go(cur+1);});
     var nextA=view.querySelector('.next-nav .next:not(.ghost)');
     var orig=nextA?{k:nextA.querySelector('.next-k').textContent,t:nextA.querySelector('.next-t').textContent}:null;
     var cur=0, last=subs.length-1;
@@ -839,7 +833,6 @@ footer b{color:var(--fg)}
       if(window.__rise) window.__rise(subs[i]);
       btns.forEach(function(b,j){if(j===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');});
       try{var bb=btns[i],r=rail.getBoundingClientRect(),br=bb.getBoundingClientRect();if(rail.scrollWidth>rail.clientWidth){rail.scrollLeft+=br.left-r.left-(r.width-br.width)/2;}}catch(e){}
-      prevB.disabled=i===0; nextB.disabled=i===last;
       if(nextA){
         if(i<last){nextA.querySelector('.next-k').textContent='다음 섹션';nextA.querySelector('.next-t').textContent=subs[i+1].getAttribute('data-sub');}
         else{nextA.querySelector('.next-k').textContent=orig.k;nextA.querySelector('.next-t').textContent=orig.t;}
