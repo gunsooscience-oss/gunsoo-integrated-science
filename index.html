@@ -128,6 +128,24 @@ body[data-view="home"] footer{display:none}
 .hero-intro{border-bottom:1px solid var(--line)}
 .links a[aria-current="page"]{color:var(--fg);background:var(--panel-2)}
 .nav-cta[aria-current="page"]{box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--sun)}
+/* 출강 학원 · 연구 콘텐츠 */
+section.block.affil{padding-block:64px}
+.aff-group+.aff-group{margin-top:44px}
+.aff-grid{display:grid;gap:12px;margin-top:16px}
+.aff-grid.six{grid-template-columns:repeat(6,minmax(0,1fr))}
+.aff-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.aff{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;min-height:118px;padding:18px 18px 16px;border-radius:12px;background:var(--panel);border:1px solid rgba(255,255,255,.14);text-decoration:none;color:var(--fg);box-shadow:0 0 16px rgba(255,255,255,.05),0 0 44px rgba(255,255,255,.04),inset 0 1px 0 rgba(255,255,255,.1);transition:box-shadow .3s,border-color .3s,transform .3s}
+.aff::before{content:"";position:absolute;left:-20%;right:-20%;top:-50px;height:100px;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.1),transparent 70%);pointer-events:none}
+a.aff:hover{border-color:rgba(255,255,255,.32);box-shadow:0 0 22px rgba(255,255,255,.1),0 0 64px rgba(255,255,255,.07),inset 0 1px 0 rgba(255,255,255,.2);transform:translateY(-2px)}
+.aff-org{font-size:13px;color:var(--mute);white-space:nowrap}
+.aff-big{font-size:26px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin-top:auto;text-shadow:0 0 18px rgba(255,255,255,.25)}
+.aff-name{font-size:17px;font-weight:700;line-height:1.35;margin-top:auto;text-shadow:0 0 16px rgba(255,255,255,.2)}
+.aff-tag{position:absolute;right:16px;bottom:18px;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:var(--fg)}
+.aff-arr{position:absolute;right:14px;top:12px;font-size:14px;color:var(--dim);transition:color .3s}
+a.aff:hover .aff-arr{color:var(--fg)}
+@media (max-width:980px){.aff-grid.six{grid-template-columns:repeat(3,minmax(0,1fr))}.aff-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.aff-grid.six,.aff-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.aff{min-height:100px;padding:14px}.aff-big{font-size:22px}.aff-name{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.aff{transition:none}}
 /* 공통 섹션 */
 section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .sec-head{max-width:760px}
@@ -445,37 +463,35 @@ footer b{color:var(--fg)}
     <figure class="portrait"><img src="profile.webp" alt="통합과학 강사 박건수" width="760" height="1277"></figure>
   </div>
 
-  <ul class="creds" style="--n:6" aria-label="출강 학원">
-    <li><a href="https://blog.naver.com/dungeonscience" target="_blank" rel="noopener"><b>1630과학학원</b>산본 · 원장</a></li>
-    <li><a href="https://russelmd.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>목동</a></li>
-    <li><a href="https://russelyt.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>영통</a></li>
-    <li><a href="https://russelbc.megastudy.net/" target="_blank" rel="noopener"><b>메가스터디 러셀</b>부천</a></li>
-    <li><a href="https://blog.naver.com/henem_" target="_blank" rel="noopener"><b>해냄학원</b>평촌</a></li>
-    <li><a href="https://blog.naver.com/onyuldasan" target="_blank" rel="noopener"><b>온율학원</b>덕소</a></li>
-  </ul>
-  <ul class="creds" style="--n:4" aria-label="연구 · 콘텐츠">
-    <li><div class="ci"><b>과학던전 통합과학 연구소</b>대표</div></li>
-    <li><div class="ci"><b>MAikers(with CSM17)</b>통합과학 팀장</div></li>
-    <li><div class="ci"><b>문제 깎는 청년들</b>대표 연구원</div></li>
-    <li><a href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener"><b>과학하는 박건수</b>유튜브 채널</a></li>
-  </ul>
 </section>
 
-<section class="block" id="s-proof">
+<section class="block affil" id="s-affil">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">숫자로 보는 박건수 통합과학</p>
-      <h2>한 주에 열 번, 여섯 곳의 강의실에서 여러분을 만납니다.</h2>
+    <div class="aff-group">
+      <p class="eyebrow">출강 학원</p>
+      <div class="aff-grid six">
+        <a class="aff" href="https://blog.naver.com/dungeonscience" target="_blank" rel="noopener"><span class="aff-org">1630과학학원</span><span class="aff-big">산본</span><span class="aff-tag">원장</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://russelmd.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">목동</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://russelyt.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">영통</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://russelbc.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">부천</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://blog.naver.com/henem_" target="_blank" rel="noopener"><span class="aff-org">해냄학원</span><span class="aff-big">평촌</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://blog.naver.com/onyuldasan" target="_blank" rel="noopener"><span class="aff-org">온율학원</span><span class="aff-big">덕소</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+      </div>
     </div>
-    <div class="stats mt-l">
-      <div class="stat"><div class="num">6<small>곳</small></div><div class="lab">출강 학원</div><div class="desc">1630 산본 · 러셀 목동·영통·부천 · 해냄 평촌 · 온율 덕소</div></div>
-      <div class="stat"><div class="num">10<small>개 반</small></div><div class="lab">주간 수업</div><div class="desc">수요일부터 일요일까지<br>수능·N종합</div></div>
-      <div class="stat"><div class="num">32<small>회분 + α</small></div><div class="lab">자체 제작 실전 문항</div><div class="desc">자체 N제<br>극딜 모의고사 S1~S4 16회분<br>MAikers 모의고사 16회분</div></div>
-      <div class="stat"><div class="num">10<small>권</small></div><div class="lab">월간지 RAID</div><div class="desc">1월부터 10월까지<br>학습 시기와 과정에 따라<br>반드시 필요한 엄선 문항</div></div>
+    <div class="aff-group">
+      <p class="eyebrow">연구 · 콘텐츠</p>
+      <div class="aff-grid four">
+        <div class="aff team"><span class="aff-org">대표</span><span class="aff-name">과학던전 통합과학 연구소</span></div>
+        <div class="aff team"><span class="aff-org">통합과학 팀장</span><span class="aff-name">MAikers(with CSM17)</span></div>
+        <div class="aff team"><span class="aff-org">대표 연구원</span><span class="aff-name">문제 깎는 청년들</span></div>
+        <a class="aff team" href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener"><span class="aff-org">유튜브 채널</span><span class="aff-name">과학하는 박건수</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+      </div>
     </div>
-
   </div>
 </section>
+
+
+
 
 <section class="block" id="s-teacher">
   <div class="wrap">
@@ -493,47 +509,9 @@ footer b{color:var(--fg)}
 
 
 
-<section class="block" id="s-reviews">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">유튜브</p>
-      <h2>수업 밖에서도 통합과학은 이어집니다.</h2>
-    </div>
 
-    <div class="yt mt-l">
-      <div>
-        <span class="tag">YOUTUBE</span>
-        <h3 style="font-size:22px;margin-top:8px">과학하는 박건수</h3>
-        <p style="color:var(--mute);margin-top:6px">수업 밖에서도 통합과학을 공부하는 학생들이 모이는 채널입니다.</p>
-        <div class="yt-stats">
-          <div><b data-yt="subs">8,590</b><span>구독자</span></div>
-          <div><b data-yt="views">3,088,225</b><span>누적 조회수</span></div>
-          <div><b data-yt="videos">509</b><span>영상 수</span></div>
-        </div>
-        <p class="yt-upd" data-yt="date">10월 28일 업데이트</p>
-      </div>
-      <a class="btn" href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener">채널 방문</a>
-    </div>
-  </div>
-</section>
 
-<section class="block" id="s-videos">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">영상으로 먼저 보기</p>
-      <h2>박건수를 영상으로 먼저 만나보세요.</h2>
-    </div>
-    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
-      <span class="ot-glow" aria-hidden="true"></span>
-      <span class="ot-text">
-        <span class="tag">ORIENTATION</span>
-        <span class="ot-title">2028 수능<br>통합과학 OT</span>
-        <span class="ot-cta"><span class="play" aria-hidden="true"></span>유튜브에서 보기</span>
-      </span>
-      <img class="ot-photo" src="profile.webp" alt="" width="760" height="1277">
-    </a>
-  </div>
-</section>
+
 
 <section class="motto">
   <div class="wrap">
@@ -559,6 +537,48 @@ footer b{color:var(--fg)}
       <div class="stage-card" style="--c:#6a7bff"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
     </div>
     <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="s-videos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">영상으로 먼저 보기</p>
+      <h2>박건수를 영상으로 먼저 만나보세요.</h2>
+    </div>
+    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
+      <span class="ot-glow" aria-hidden="true"></span>
+      <span class="ot-text">
+        <span class="tag">ORIENTATION</span>
+        <span class="ot-title">2028 수능<br>통합과학 OT</span>
+        <span class="ot-cta"><span class="play" aria-hidden="true"></span>유튜브에서 보기</span>
+      </span>
+      <img class="ot-photo" src="profile.webp" alt="" width="760" height="1277">
+    </a>
+  </div>
+</section>
+
+<section class="block" id="s-reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">유튜브</p>
+      <h2>수업 밖에서도 통합과학은 이어집니다.</h2>
+    </div>
+
+    <div class="yt mt-l">
+      <div>
+        <span class="tag">YOUTUBE</span>
+        <h3 style="font-size:22px;margin-top:8px">과학하는 박건수</h3>
+        <p style="color:var(--mute);margin-top:6px">수업 밖에서도 통합과학을 공부하는 학생들이 모이는 채널입니다.</p>
+        <div class="yt-stats">
+          <div><b data-yt="subs">8,590</b><span>구독자</span></div>
+          <div><b data-yt="views">3,088,225</b><span>누적 조회수</span></div>
+          <div><b data-yt="videos">509</b><span>영상 수</span></div>
+        </div>
+        <p class="yt-upd" data-yt="date">10월 28일 업데이트</p>
+      </div>
+      <a class="btn" href="https://www.youtube.com/@%EB%B0%95%EA%B1%B4%EC%88%98%EA%B3%BC%ED%95%99" target="_blank" rel="noopener">채널 방문</a>
+    </div>
   </div>
 </section>
 
