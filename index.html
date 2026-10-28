@@ -380,14 +380,12 @@ section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .stat .num,.stat .num small,.yt-stats b,.cell .tm,.cell .to,.branch .tel,.tel,.ol-meta,.stage-card .when{white-space:nowrap}
 .yt-stats b{font-size:clamp(17px,2vw,22px)}
 /* 관리 */
-.care{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:2px solid var(--fg)}
-.care li{padding:24px 18px 8px 0}
-.care li+li{padding-left:18px;border-left:1px solid var(--line)}
-.care h3{font-size:18px;white-space:nowrap}
-.care.dup{display:none}
-@media (prefers-reduced-motion:reduce){.care-wrap{overflow-x:auto!important;-webkit-mask-image:none!important;mask-image:none!important}.care-track{animation:none!important}.care.dup{display:none!important}}
+.care{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.care>li{position:relative;overflow:hidden;padding:22px 20px;border-radius:var(--radius);background:var(--panel);border:1px solid rgba(255,255,255,.16);box-shadow:0 0 18px rgba(255,255,255,.06),0 0 54px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.12)}
+.care>li::before{content:"";position:absolute;left:-20%;right:-20%;top:-50px;height:100px;background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.1),transparent 70%);pointer-events:none}
+.care h3{font-size:17px;white-space:nowrap;text-shadow:0 0 16px rgba(255,255,255,.22)}
 .care ul{margin-top:12px;display:grid;gap:4px}
-.care ul li{padding:0;border:0;font-size:14px;color:var(--mute)}
+.care ul li{font-size:14px;color:var(--mute)}
 
 .motto{padding-block:96px;border-bottom:1px solid var(--line);text-align:left}
 .motto p{color:var(--mute);font-size:18px;line-height:1.9}
@@ -423,12 +421,8 @@ footer b{color:var(--fg)}
 @media (max-width:980px){
   .stats,.road{grid-template-columns:repeat(2,minmax(0,1fr))}
   .reviews,.contents,.videos,.contact,.pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .care-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-  .care-track{display:flex;width:max-content;animation:slide 36s linear infinite}
-  .care-wrap:hover .care-track{animation-play-state:paused}
-  .care{grid-template-columns:repeat(5,200px)}
-  .care.dup{display:grid}
-  .care>li,.care>li+li{padding-left:18px;padding-right:18px;border-left:1px solid var(--line)}
+  .care{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .care>li:last-child{grid-column:1 / -1}
   .creds{grid-template-columns:repeat(3,minmax(0,1fr))}
   .creds[style*="--n:4"]{grid-template-columns:repeat(2,minmax(0,1fr))}
   .story{grid-template-columns:minmax(0,1fr);gap:24px}
@@ -471,7 +465,7 @@ footer b{color:var(--fg)}
     <a class="brand" href="#home"><span class="brand-mark">16:30</span><span>박건수 통합과학</span></a>
     <nav class="links" aria-label="메뉴">
       <a href="#about">강사 소개</a>
-      <a href="#curriculum">커리큘럼</a>
+      <a href="#curriculum">커리큘럼&amp;컨텐츠</a>
       <a href="#timetable">시간표</a>
     </nav>
     <a class="nav-cta" href="#contact">수강 상담</a>
@@ -491,7 +485,6 @@ footer b{color:var(--fg)}
   </div>
 
 </section>
-
 
 <section class="block home-voices" id="s-voices">
   <div class="wrap">
@@ -547,7 +540,7 @@ footer b{color:var(--fg)}
     <div class="aff-group">
       <p class="eyebrow">출강 학원</p>
       <div class="aff-grid six">
-        <a class="aff" href="https://blog.naver.com/dungeonscience" target="_blank" rel="noopener"><span class="aff-org">1630과학학원</span><span class="aff-big">산본</span><span class="aff-tag">원장</span><span class="aff-arr" aria-hidden="true">↗</span></a>
+        <a class="aff" href="https://blog.naver.com/dungeonscience" target="_blank" rel="noopener"><span class="aff-org">1630과학학원</span><span class="aff-big">산본</span><span class="aff-arr" aria-hidden="true">↗</span></a>
         <a class="aff" href="https://russelmd.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">목동</span><span class="aff-arr" aria-hidden="true">↗</span></a>
         <a class="aff" href="https://russelyt.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">영통</span><span class="aff-arr" aria-hidden="true">↗</span></a>
         <a class="aff" href="https://russelbc.megastudy.net/" target="_blank" rel="noopener"><span class="aff-org">메가스터디 러셀</span><span class="aff-big">부천</span><span class="aff-arr" aria-hidden="true">↗</span></a>
@@ -567,9 +560,6 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-
-
-
 <section class="block" id="s-teacher" data-sub="강점">
   <div class="wrap">
     <div class="sec-head">
@@ -584,12 +574,6 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-
-
-
-
-
-
 <section class="motto" data-sub="수업 철학">
   <div class="wrap">
     <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
@@ -598,10 +582,46 @@ footer b{color:var(--fg)}
   </div>
 </section>
 
-<nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#curriculum"><span class="next-k">다음</span><span class="next-t">커리큘럼</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#contact"><span class="next-k">바로 가기</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
+<nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#curriculum"><span class="next-k">다음</span><span class="next-t">커리큘럼&amp;컨텐츠</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#contact"><span class="next-k">바로 가기</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
 
 <div class="view" data-view="curriculum" hidden>
+
+<section class="block" id="s-curriculum" data-sub="커리큘럼">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">커리큘럼</p>
+      <h2>1월에 시작해 10월에 완성하는 네 단계.</h2>
+      <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
+    </div>
+    <div class="road mt-l">
+      <div class="stage-card" style="--t:255,106,90"><span class="when"><span class="nm">λ 700 nm</span>01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
+      <div class="stage-card" style="--t:255,194,74"><span class="when"><span class="nm">λ 590 nm</span>02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
+      <div class="stage-card" style="--t:74,222,128"><span class="when"><span class="nm">λ 520 nm</span>03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
+      <div class="stage-card" style="--t:139,123,255"><span class="when"><span class="nm">λ 420 nm</span>04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
+    </div>
+    <div class="glow-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="s-videos" data-sub="OT">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">영상으로 먼저 보기</p>
+      <h2>박건수를 영상으로 먼저 만나보세요.</h2>
+    </div>
+    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
+      <span class="ot-glow" aria-hidden="true"></span>
+      <span class="ot-text">
+        <span class="tag">ORIENTATION</span>
+        <span class="ot-title">2028 수능<br>통합과학 OT</span>
+        <span class="ot-cta"><span class="play" aria-hidden="true"></span>유튜브에서 보기</span>
+      </span>
+      <img class="ot-photo" src="profile.webp" alt="" width="760" height="1277">
+    </a>
+  </div>
+</section>
+
 <section class="block" id="s-winter" data-sub="겨울 LEVEL UP">
   <div class="wrap">
     <div class="sec-head">
@@ -622,41 +642,6 @@ footer b{color:var(--fg)}
       </article>
     </div>
     <p class="w-note">학원별 개강 요일과 시간은 각 학원으로 문의해 주세요. 아래 시간표와 수강 상담에서 바로 확인할 수 있습니다.</p>
-  </div>
-</section>
-
-<section class="block" id="s-curriculum" data-sub="커리큘럼">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">커리큘럼</p>
-      <h2>1월에 시작해 10월에 완성하는 네 단계.</h2>
-      <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
-    </div>
-    <div class="road mt-l">
-      <div class="stage-card" style="--t:255,106,90"><span class="when"><span class="nm">λ 700 nm</span>01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
-      <div class="stage-card" style="--t:255,194,74"><span class="when"><span class="nm">λ 590 nm</span>02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
-      <div class="stage-card" style="--t:74,222,128"><span class="when"><span class="nm">λ 520 nm</span>03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
-      <div class="stage-card" style="--t:139,123,255"><span class="when"><span class="nm">λ 420 nm</span>04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
-    </div>
-    <div class="glow-line" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="block" id="s-videos" data-sub="OT 영상">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">영상으로 먼저 보기</p>
-      <h2>박건수를 영상으로 먼저 만나보세요.</h2>
-    </div>
-    <a class="ot mt-l" href="https://youtu.be/1zB4Acp4tFk" target="_blank" rel="noopener" aria-label="2028 수능 통합과학 OT 유튜브에서 보기">
-      <span class="ot-glow" aria-hidden="true"></span>
-      <span class="ot-text">
-        <span class="tag">ORIENTATION</span>
-        <span class="ot-title">2028 수능<br>통합과학 OT</span>
-        <span class="ot-cta"><span class="play" aria-hidden="true"></span>유튜브에서 보기</span>
-      </span>
-      <img class="ot-photo" src="profile.webp" alt="" width="760" height="1277">
-    </a>
   </div>
 </section>
 
@@ -690,30 +675,18 @@ footer b{color:var(--fg)}
       <p class="eyebrow">관리 프로그램</p>
       <h2>수업이 끝난 뒤에도 공부의 흐름이 이어지도록.</h2>
     </div>
-    <div class="care-wrap mt-l">
-     <div class="care-track">
-      <ul class="care">
+    <ul class="care mt-l">
         <li><h3>학습 지도 멘토링</h3><ul><li>주기적 학생 상담</li><li>성취도 기반</li><li>수준별 맞춤 멘토링</li></ul></li>
         <li><h3>주간 복습 테스트</h3><ul><li>개념 복습 테스트</li><li>무제한 재시험</li><li>학생별 과제 오답노트</li></ul></li>
         <li><h3>수업 피드백</h3><ul><li>테스트·과제 결과</li><li>누적 성취도·약점</li><li>수업 후 문자 발송</li></ul></li>
         <li><h3>질의응답</h3><ul><li>수업 전후 질의응답</li><li>온라인 실시간 질문</li></ul></li>
         <li><h3>온라인 콘텐츠</h3><ul><li>개인 홈페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
       </ul>
-      <ul class="care dup" aria-hidden="true">
-        <li><h3>학습 지도 멘토링</h3><ul><li>주기적 학생 상담</li><li>성취도 기반</li><li>수준별 맞춤 멘토링</li></ul></li>
-        <li><h3>주간 복습 테스트</h3><ul><li>개념 복습 테스트</li><li>무제한 재시험</li><li>학생별 과제 오답노트</li></ul></li>
-        <li><h3>수업 피드백</h3><ul><li>테스트·과제 결과</li><li>누적 성취도·약점</li><li>수업 후 문자 발송</li></ul></li>
-        <li><h3>질의응답</h3><ul><li>수업 전후 질의응답</li><li>온라인 실시간 질문</li></ul></li>
-        <li><h3>온라인 콘텐츠</h3><ul><li>개인 홈페이지</li><li>복습 영상</li><li>추가 강의 영상</li></ul></li>
-      </ul>
-     </div>
-    </div>
   </div>
 </section>
 
 <nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#timetable"><span class="next-k">다음</span><span class="next-t">시간표</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#contact"><span class="next-k">바로 가기</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
-
 
 <div class="view" data-view="timetable" hidden>
 <section class="block" id="s-timetable">
@@ -734,7 +707,6 @@ footer b{color:var(--fg)}
 
 <nav class="next-nav" aria-label="다음 화면"><div class="wrap next-in"><a class="next" href="#contact"><span class="next-k">다음</span><span class="next-t">수강 상담</span><span class="next-a" aria-hidden="true">→</span></a><a class="next ghost" href="#faq"><span class="next-k">바로 가기</span><span class="next-t">FAQ</span><span class="next-a" aria-hidden="true">→</span></a></div></nav>
 </div>
-
 
 <div class="view" data-view="contact" hidden>
 <section class="block" id="s-contact" data-sub="학원별 연락처">
@@ -795,7 +767,7 @@ footer b{color:var(--fg)}
   var names=views.map(function(v){return v.getAttribute('data-view');});
   function show(){
     var h=(location.hash||'').slice(1), sub=0;
-    var alias={winter:['curriculum',0],faq:['contact',1]};
+    var alias={winter:['curriculum',2],faq:['contact',1]};
     if(alias[h]){sub=alias[h][1];h=alias[h][0];}
     if(names.indexOf(h)<0) h='home';
     views.forEach(function(v){v.hidden=v.getAttribute('data-view')!==h;});
@@ -863,7 +835,7 @@ footer b{color:var(--fg)}
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hover=window.matchMedia&&matchMedia('(hover: hover)').matches;
-  var sel='.stage-card,.aff,.cell.suneung,.cell.naesin,.cell.nall,.branch,.next,.pillars.long .pillar,.yt,.ot,.w-card';
+  var sel='.stage-card,.aff,.cell.suneung,.cell.naesin,.cell.nall,.branch,.next,.pillars.long .pillar,.yt,.ot,.w-card,.care>li';
   [].slice.call(document.querySelectorAll(sel)).forEach(function(el){el.classList.add('glowable');});
   if(hover&&!reduce){
     document.addEventListener('pointermove',function(e){
@@ -872,7 +844,7 @@ footer b{color:var(--fg)}
       el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px');
     },{passive:true});
   }
-  var items='.sec-head,.intro-text>*,.hero-career>div,.portrait,.aff-group,.road>*,.glow-line,.pillars>*,.motto .wrap>*,.ot,.yt,.care-wrap,.winter>*,.w-note,.legend,.filters,.tt>.cell:not(.empty),.contact>*,.channels,.faq>details,.next-nav .next';
+  var items='.sec-head,.intro-text>*,.hero-career>div,.portrait,.aff-group,.road>*,.glow-line,.pillars>*,.motto .wrap>*,.ot,.yt,.care>li,.winter>*,.w-note,.legend,.filters,.tt>.cell:not(.empty),.contact>*,.channels,.faq>details,.next-nav .next';
   window.__rise=function(root){
     if(reduce||!root) return;
     var list=[].slice.call(root.querySelectorAll(items)).filter(function(el){return !el.closest('[hidden]');});
