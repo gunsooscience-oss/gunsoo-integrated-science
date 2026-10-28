@@ -248,7 +248,7 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 @keyframes blink{50%{opacity:0}}
 .ck-msg{font:400 12px/1.4 var(--f-mono);letter-spacing:.04em}
 /* 8) 순서대로 등장 */
-.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms)}
+.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 55ms)}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.rise{animation:none}.ck-colon{animation:none}.glowable::after{transition:none}}
 @media (max-width:520px){.ck-time{font-size:14px}.ck-msg{font-size:11px}}
@@ -318,8 +318,9 @@ section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--mute)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:0}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.filters button{font:500 14px/1 var(--f-body);color:var(--mute);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 14px;cursor:pointer}
-.filters button[aria-pressed="true"]{color:var(--ink);background:var(--fg);border-color:var(--fg)}
+.filters button{font:500 14px/1 var(--f-body);color:var(--mute);background:var(--panel);border:1.5px solid rgba(255,255,255,.1);border-radius:999px;padding:10px 15px;cursor:pointer;transition:border-color .25s,box-shadow .25s,color .25s}
+.filters button:hover{color:var(--fg);border-color:rgba(255,255,255,.3)}
+.filters button[aria-pressed="true"]{color:#fff;font-weight:600;border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.08),0 0 18px rgba(255,255,255,.35)}
 .tt{display:grid;grid-template-columns:64px repeat(5,minmax(0,1fr));gap:10px;margin-top:24px}
 .tt-h{font-weight:600;padding-bottom:8px;border-bottom:2px solid var(--fg)}
 .tt-h span{font:500 12px/1 var(--f-mono);color:var(--mute);margin-left:6px}
@@ -338,7 +339,9 @@ section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .cell .to{font-size:13px;opacity:.8}
 .cell .ty{font-size:14px;font-weight:700;margin-top:auto;padding-top:6px}
 .cell .day{display:none}
-.cell.off{opacity:.18}
+.cell{transition:opacity .25s,border-color .25s,box-shadow .25s}
+.cell.off{opacity:.15}
+.tt.filtered .cell[data-b]:not(.off){border-color:rgba(255,255,255,.7);box-shadow:0 0 22px rgba(255,255,255,.18),inset 0 1px 0 rgba(255,255,255,.2)}
 
 /* 강사 */
 .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -963,7 +966,7 @@ footer b{color:var(--fg)}
     var n=btn.textContent;
     f.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===btn));});
     tt.querySelectorAll('.cell[data-b]').forEach(function(c){c.classList.toggle('off',n!=='전체'&&c.dataset.b!==n);});
-    curBr=n; setDay(curDay);
+    curBr=n; tt.classList.toggle('filtered',n!=='전체'); setDay(curDay);
   });
 })();
 
