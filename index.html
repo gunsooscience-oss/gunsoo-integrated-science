@@ -75,7 +75,7 @@ ul{margin:0;padding:0;list-style:none}
 /* 히어로 */
 .stage{position:relative;height:clamp(360px,44vw,560px);overflow:hidden;background:#06070a;border-bottom:1px solid var(--line);touch-action:pan-y}
 #prism{position:absolute;inset:0;width:100%;height:100%;display:block}
-.fallback{display:none;position:absolute;inset:0;place-items:center;font:800 clamp(80px,20vw,260px)/1 var(--f-disp);color:#050507;text-shadow:-3px 0 14px #ff5a5a,3px 0 14px #36b9f2,0 0 48px rgba(255,240,210,.55)}
+.fallback{display:none;position:absolute;inset:0;place-items:center;font:800 clamp(80px,20vw,260px)/1 var(--f-disp);color:#050507;text-shadow:0 0 14px rgba(255,255,255,.55),0 0 48px rgba(255,255,255,.35)}
 .no-gl .fallback{display:grid}
 .no-gl #prism{display:none}
 .hud{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding-block:18px;pointer-events:none;font:400 12px/1.5 var(--f-mono);color:#8b92a1;letter-spacing:.04em}
@@ -238,13 +238,6 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 .ck-colon{display:inline-block;margin:0 1px;animation:blink 1s steps(1,end) infinite}
 @keyframes blink{50%{opacity:0}}
 .ck-msg{font:400 12px/1.4 var(--f-mono);letter-spacing:.04em}
-/* 5) 단계별 파장 */
-.stage-card{border-color:rgba(var(--t),.28)}
-.stage-card::before{background:radial-gradient(50% 50% at 50% 50%,rgba(var(--t),.2),transparent 70%)}
-.stage-card h3{text-shadow:0 0 18px rgba(255,255,255,.3),0 0 30px rgba(var(--t),.35)}
-.stage-card .when{display:flex;justify-content:space-between;gap:8px}
-.stage-card .nm{order:2;color:rgb(var(--t));opacity:.85;text-shadow:0 0 10px rgba(var(--t),.6)}
-.stage-card.glowable::after{background:radial-gradient(200px circle at var(--mx,-999px) var(--my,-999px),rgba(var(--t),.9),rgba(var(--t),0) 70%)}
 /* 8) 순서대로 등장 */
 .rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms)}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -272,8 +265,6 @@ section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 
 /* 1630 */
 .story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
-.clock{font:800 clamp(72px,12vw,150px)/.9 var(--f-disp);letter-spacing:-0.04em;background:var(--spec);-webkit-background-clip:text;background-clip:text;color:transparent}
-.clock-cap{margin-top:16px;font:500 13px/1.6 var(--f-mono);color:var(--mute);letter-spacing:.04em}
 .story .body{color:#cdd1db;margin-top:16px}
 .improve{display:grid;gap:12px;margin-top:28px}
 .improve li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
@@ -619,10 +610,10 @@ footer b{color:var(--fg)}
       <p class="sub" style="max-width:none">개념을 이해하고, 연결하고, 변수에 대응하고, 실전에서 완성합니다.<br>단계마다 필요한 콘텐츠와 강의로 효율적인 과학 학습을 준비했습니다.</p>
     </div>
     <div class="road mt-l">
-      <div class="stage-card" style="--t:255,106,90"><span class="when"><span class="nm">λ 700 nm</span>01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
-      <div class="stage-card" style="--t:255,194,74"><span class="when"><span class="nm">λ 590 nm</span>02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
-      <div class="stage-card" style="--t:74,222,128"><span class="when"><span class="nm">λ 520 nm</span>03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
-      <div class="stage-card" style="--t:139,123,255"><span class="when"><span class="nm">λ 420 nm</span>04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
+      <div class="stage-card"><span class="when">01 · 1~2월</span><h3>LEVEL UP</h3><span class="kind">개념</span><p>개념을 이해하고<br>기본을 완성하는 단계</p></div>
+      <div class="stage-card"><span class="when">02 · 3~6월</span><h3>SKILL UP</h3><span class="kind">심화</span><p>개념을 연결하고<br>기술을 훈련하는 단계</p></div>
+      <div class="stage-card"><span class="when">03 · 7~8월</span><h3>FARMING</h3><span class="kind">고난도 N제</span><p>실전 감각을 키우고<br>변수에 대응하는 단계</p></div>
+      <div class="stage-card"><span class="when">04 · 9~10월</span><h3>극딜(極Deal)</h3><span class="kind">모의고사 시즌 1~4</span><p>네 번의 시즌으로<br>실전을 완성하는 단계</p><div class="subs"><span>트렌드</span><span>신유형</span><span>고난도</span><span>파이널</span></div></div>
     </div>
     <div class="glow-line" aria-hidden="true"></div>
   </div>
@@ -983,21 +974,21 @@ footer b{color:var(--fg)}
   ' vec3 rays=vec3(0.);float w=1.;',
   ' for(int i=0;i<30;i++){',
   '  float t=float(i)/30.*0.85;',
-  '  rays+=vec3(em(mix(uv,L,t*0.93),L,A),em(mix(uv,L,t),L,A),em(mix(uv,L,t*1.08),L,A))*w;',
+  '  rays+=vec3(em(mix(uv,L,t),L,A))*w;',
   '  w*=0.952;',
   ' }',
   ' rays*=0.014;',
   ' vec2 dd=(uv-L)*vec2(A,1.);',
   ' float ang=atan(dd.y,dd.x)/6.2831853;',
-  ' vec3 tint=mix(vec3(1.0,0.95,0.88),hue(ang+uTime*0.025),0.3);',
+  ' vec3 tint=vec3(1.0,0.985,0.96);',
   ' col+=rays*tint*1.25;',
   ' col+=vec3(1.0,0.96,0.9)*em(uv,L,A)*0.2;',
   ' vec2 dir=normalize(dd+1e-5)*vec2(1./A,1.);',
   ' float m=mS(uv);',
   ' float o=uRect.w*0.018;',
-  ' vec3 rim=vec3(mB(uv+dir*o*1.6),mB(uv+dir*o),mB(uv+dir*o*0.4));',
+  ' vec3 rim=vec3(mB(uv+dir*o));',
   ' rim=clamp(rim-m,0.,1.)*(0.35+0.65*shape(uv,L,A));',
-  ' col+=rim*hue(ang*2.+uTime*0.04)*0.3+rim*0.18;',
+  ' col+=rim*0.42;',
   ' col=mix(col,vec3(0.006,0.0065,0.008),m);',
   ' vec2 v=uv-0.5;col*=1.-0.6*dot(v,v);',
   ' col=1.-exp(-col*1.35);',
