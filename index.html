@@ -205,12 +205,6 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 .portrait::before{content:"";position:absolute;left:-18%;right:-18%;top:2%;height:70%;background:radial-gradient(50% 50% at 50% 45%,rgba(255,255,255,.13),rgba(255,255,255,.04) 45%,transparent 72%);pointer-events:none}
 .portrait img{filter:drop-shadow(-3px -2px 9px rgba(255,120,110,.13)) drop-shadow(3px -2px 9px rgba(80,170,255,.13)) drop-shadow(0 -6px 24px rgba(255,255,255,.16))}
 .ot-photo{filter:drop-shadow(0 -4px 18px rgba(255,255,255,.14))}
-/* 3) 화면 전환 빛줄기 */
-.sweep{position:fixed;inset:0;z-index:70;pointer-events:none;overflow:hidden;opacity:0}
-.sweep::before{content:"";position:absolute;top:0;bottom:0;left:0;width:34vw;background:linear-gradient(90deg,transparent,rgba(255,255,255,.05) 30%,rgba(255,255,255,.55) 49.6%,#fff 50%,rgba(255,255,255,.55) 50.4%,rgba(255,255,255,.05) 70%,transparent);filter:blur(1px);transform:translateX(-40vw)}
-.sweep.run{opacity:1}
-.sweep.run::before{animation:sweep .62s cubic-bezier(.55,.06,.3,1) forwards}
-@keyframes sweep{to{transform:translateX(110vw)}}
 /* 4) 16:30 시계 */
 .clock{display:inline-flex;align-items:baseline;gap:10px;color:#c9ceda}
 .ck-time{font:700 16px/1 var(--f-disp);color:var(--fg);letter-spacing:.02em;font-variant-numeric:tabular-nums;text-shadow:0 0 12px rgba(255,255,255,.35)}
@@ -227,7 +221,7 @@ body:not([data-view="home"]) footer{border-top:1px solid var(--line)}
 /* 8) 순서대로 등장 */
 .rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms)}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.rise{animation:none}.sweep{display:none}.ck-colon{animation:none}.glowable::after{transition:none}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none}.ck-colon{animation:none}.glowable::after{transition:none}}
 @media (max-width:520px){.ck-time{font-size:14px}.ck-msg{font-size:11px}}
 /* 공통 섹션 */
 section.block{padding-block:96px;border-bottom:1px solid var(--line)}
@@ -536,7 +530,6 @@ footer b{color:var(--fg)}
       <h1>생각의 속도,<br>과학의 속도</h1>
       <p class="name">박건수 통합과학<span>PARK GUNSOO</span></p>
       <p class="lead"><span>기출이 없는 첫 수능 통합과학.</span><span>문항을 직접 연구하고 만들며 다양한 지역에서 수능 화학 및 통합과학을 강의해 온 박건수가</span><span>개념부터 실전까지 하나의 흐름으로 이어지는 1년을 설계합니다.</span></p>
-      <a class="open-line" href="#winter"><span class="dot" aria-hidden="true"></span>2027 겨울 LEVEL UP<span class="ol-meta">1월 첫 주 순차 개강</span><span class="ol-meta">고3 및 N수</span><span class="ol-go" aria-hidden="true">→</span></a>
     </div>
     <div class="career hero-career">
       <div><h4>학력</h4><ul><li>고려대학교 기계공학과 졸업</li><li>연세대학교 대학원 통합과학교육 석사과정</li></ul></div>
@@ -886,12 +879,6 @@ footer b{color:var(--fg)}
     void document.body.offsetWidth;
     list.forEach(function(el){el.classList.add('rise');});
   };
-  var sweep=document.createElement('div'); sweep.className='sweep'; sweep.setAttribute('aria-hidden','true'); document.body.appendChild(sweep);
-  window.addEventListener('hashchange',function(){
-    if(reduce) return;
-    sweep.classList.remove('run'); void sweep.offsetWidth; sweep.classList.add('run');
-    clearTimeout(sweep._t); sweep._t=setTimeout(function(){sweep.classList.remove('run');},700);
-  });
   [].slice.call(document.querySelectorAll('.view')).forEach(function(v){
     v.addEventListener('viewshow',function(){ if(!v.classList.contains('has-sub')) window.__rise(v); });
   });
