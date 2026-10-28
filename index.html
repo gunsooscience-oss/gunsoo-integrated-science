@@ -404,10 +404,10 @@ section.block{padding-block:96px;border-bottom:1px solid var(--line)}
 .care ul{margin-top:12px;display:grid;gap:4px}
 .care ul li{font-size:14px;color:var(--mute)}
 
-.motto{padding-block:96px;border-bottom:1px solid var(--line);text-align:left}
-.motto p{color:var(--mute);font-size:18px;line-height:1.9}
-.motto h2{font-size:clamp(32px,5vw,58px);margin-top:18px;letter-spacing:-0.035em}
-.motto .glow-line{max-width:320px;background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(255,255,255,.4) 55%,transparent)}
+.motto-in{margin-top:56px;padding-top:44px;border-top:1px solid var(--line)}
+.motto-in p{color:var(--mute);font-size:17px;line-height:1.85}
+.motto-in h2{font-size:clamp(28px,4vw,46px);margin-top:14px;letter-spacing:-0.035em}
+.motto-in .glow-line{max-width:320px;background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(255,255,255,.4) 55%,transparent)}
 
 /* FAQ */
 .faq{display:grid;gap:0;border-top:1px solid var(--line);max-width:860px}
@@ -588,16 +588,14 @@ footer b{color:var(--fg)}
       <div class="pillar"><h3>시험장에서 쓸 수 있는 풀이</h3><p>간결하고 일관된 풀이를 제시해<br>시험장에서도 그대로 적용할 수 있는 강력한 해결을 추구합니다.</p></div>
       <div class="pillar"><h3>다음 수업이 기다려지는 강의</h3><p>유쾌한 분위기 속에서도 밀도는 놓치지 않습니다.<br>재미와 실력이 함께 쌓이는 수업을 지향합니다.</p></div>
     </div>
+    <div class="motto-in">
+      <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
+      <h2>과정은 치열하게, 해결은 단순하게.</h2>
+      <div class="glow-line" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
-<section class="motto" data-sub="수업 철학">
-  <div class="wrap">
-    <p>어려운 것을 많이 배우는 것이 아니라<br>필요한 것을 정확하게 배우고,<br>시험장에서 쓸 수 있도록.</p>
-    <h2>과정은 치열하게, 해결은 단순하게.</h2>
-    <div class="glow-line" aria-hidden="true"></div>
-  </div>
-</section>
 </div>
 
 <div class="view" data-view="curriculum" hidden>
@@ -656,7 +654,7 @@ footer b{color:var(--fg)}
         </div>
       </article>
     </div>
-    <p class="w-note">학원별 개강 요일과 시간은 각 학원으로 문의해 주세요. 아래 시간표와 수강 상담에서 바로 확인할 수 있습니다.</p>
+    <p class="w-note">학원별 개강 요일과 시간은 각 학원으로 문의해 주세요. 상단 시간표와 수강 상담 메뉴에서 확인할 수 있습니다.</p>
   </div>
 </section>
 
@@ -854,7 +852,7 @@ footer b{color:var(--fg)}
       el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px');
     },{passive:true});
   }
-  var items='.sec-head,.intro-text>*,.hero-career>div,.portrait,.aff-group,.road>*,.glow-line,.pillars>*,.motto .wrap>*,.ot,.yt,.care>li,.winter>*,.w-note,.legend,.filters,.tt>.cell:not(.empty),.contact>*,.channels,.faq>details,.next-nav .next';
+  var items='.sec-head,.intro-text>*,.hero-career>div,.portrait,.aff-group,.road>*,.glow-line,.pillars>*,.motto-in>*,.ot,.yt,.care>li,.winter>*,.w-note,.legend,.filters,.tt>.cell:not(.empty),.contact>*,.channels,.faq>details,.next-nav .next';
   window.__rise=function(root){
     if(reduce||!root) return;
     var list=[].slice.call(root.querySelectorAll(items)).filter(function(el){return !el.closest('[hidden]');});
