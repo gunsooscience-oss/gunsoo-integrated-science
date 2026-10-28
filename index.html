@@ -809,47 +809,65 @@ footer b{color:var(--fg)}
   window.addEventListener('hashchange',show);
   show();
 })();
-/* 화면 안 섹션 선택 */
+/* 화면 안 섹션: 스크롤 + 번호 표시 */
 (function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav=document.querySelector('.nav');
   [].slice.call(document.querySelectorAll('.view')).forEach(function(view){
     var subs=[].slice.call(view.children).filter(function(el){return el.hasAttribute('data-sub');});
     if(subs.length<2) return;
     view.classList.add('has-sub');
+    subs.forEach(function(sec){sec.hidden=false;});
     var rail=document.createElement('nav');
-    rail.className='subnav'; rail.setAttribute('aria-label','섹션 선택');
+    rail.className='subnav'; rail.setAttribute('aria-label','섹션 이동');
     var btns=subs.map(function(sec,i){
       var b=document.createElement('button');
       b.type='button'; b.className='sub-btn';
       b.innerHTML='<span class="sub-no">'+(i<9?'0':'')+(i+1)+'</span><span class="sub-lb"></span>';
       b.querySelector('.sub-lb').textContent=sec.getAttribute('data-sub');
-      b.addEventListener('click',function(){go(i);});
+      b.addEventListener('click',function(){go(i,true);});
       rail.appendChild(b); return b;
     });
     view.insertBefore(rail,view.firstChild);
-    var nextA=view.querySelector('.next-nav .next:not(.ghost)');
-    var orig=nextA?{k:nextA.querySelector('.next-k').textContent,t:nextA.querySelector('.next-t').textContent}:null;
-    var cur=0, last=subs.length-1;
-    function go(i,noScroll){
-      if(i<0||i>last) return;
-      cur=i;
-      subs.forEach(function(sec,j){var was=sec.hidden;sec.hidden=j!==i;if(was!==sec.hidden){try{sec.dispatchEvent(new CustomEvent(sec.hidden?'subhide':'subshow'));}catch(e){}}});
-      if(window.__rise) window.__rise(subs[i]);
-      btns.forEach(function(b,j){if(j===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');});
-      try{var bb=btns[i],r=rail.getBoundingClientRect(),br=bb.getBoundingClientRect();if(rail.scrollWidth>rail.clientWidth){rail.scrollLeft+=br.left-r.left-(r.width-br.width)/2;}}catch(e){}
-      if(nextA){
-        if(i<last){nextA.querySelector('.next-k').textContent='다음 섹션';nextA.querySelector('.next-t').textContent=subs[i+1].getAttribute('data-sub');}
-        else{nextA.querySelector('.next-k').textContent=orig.k;nextA.querySelector('.next-t').textContent=orig.t;}
-      }
-      if(!noScroll) window.scrollTo(0,0);
+    var cur=-1, last=subs.length-1, lock=-1, lockT=0;
+    function offset(){
+      var o=nav?nav.getBoundingClientRect().bottom:0;
+      if(getComputedStyle(rail).position==='sticky') o+=rail.getBoundingClientRect().height;
+      return o;
     }
-    if(nextA) nextA.addEventListener('click',function(e){if(cur<last){e.preventDefault();go(cur+1);}});
-    view.addEventListener('viewshow',function(e){var d=e&&e.detail&&e.detail.sub;go(typeof d==='number'&&d<=last?d:0,true);rail.classList.remove('ping');void rail.offsetWidth;rail.classList.add('ping');});
-    document.addEventListener('keydown',function(e){
-      if(view.hidden||e.altKey||e.ctrlKey||e.metaKey) return;
-      var t=e.target&&e.target.tagName; if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
-      if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+    function mark(i){
+      if(i===cur) return; cur=i;
+      btns.forEach(function(b,j){if(j===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');});
+      try{var bb=btns[i],r=rail.getBoundingClientRect(),br=bb.getBoundingClientRect();if(rail.scrollWidth>rail.clientWidth){rail.scrollTo({left:rail.scrollLeft+br.left-r.left-(r.width-br.width)/2,behavior:reduce?'auto':'smooth'});}}catch(e){}
+    }
+    function go(i,smooth){
+      if(i<0||i>last) return;
+      var y=i===0?0:subs[i].getBoundingClientRect().top+window.pageYOffset-offset()+1;
+      lock=i; clearTimeout(lockT); lockT=setTimeout(function(){lock=-1;spy();},900);
+      mark(i);
+      window.scrollTo({top:Math.max(0,y),behavior:(smooth&&!reduce)?'smooth':'auto'});
+      try{subs[i].dispatchEvent(new CustomEvent('subgo'));}catch(e){}
+    }
+    function spy(){
+      if(view.hidden||lock>=0) return;
+      var line=offset()+window.innerHeight*0.3, i=0;
+      subs.forEach(function(sec,j){if(sec.getBoundingClientRect().top<=line) i=j;});
+      if(window.innerHeight+window.pageYOffset>=document.documentElement.scrollHeight-4) i=last;
+      mark(i);
+    }
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(lock>=0){clearTimeout(lockT);lockT=setTimeout(function(){lock=-1;spy();},180);}
+      if(!ticking){ticking=true;requestAnimationFrame(function(){ticking=false;spy();});}
+    },{passive:true});
+    window.addEventListener('resize',spy);
+    view.addEventListener('viewshow',function(e){
+      var d=e&&e.detail&&e.detail.sub;
+      cur=-1; mark(0);
+      rail.classList.remove('ping');void rail.offsetWidth;rail.classList.add('ping');
+      if(typeof d==='number'&&d>0&&d<=last){requestAnimationFrame(function(){requestAnimationFrame(function(){go(d,false);});});}
     });
-    go(0,true);
+    mark(0);
   });
   window.dispatchEvent(new HashChangeEvent('hashchange'));
 })();
@@ -875,9 +893,9 @@ footer b{color:var(--fg)}
     list.forEach(function(el){el.classList.add('rise');});
   };
   [].slice.call(document.querySelectorAll('.view')).forEach(function(v){
-    v.addEventListener('viewshow',function(){ if(!v.classList.contains('has-sub')) window.__rise(v); });
+    v.addEventListener('viewshow',function(){ window.__rise(v); });
   });
-  var vis=document.querySelector('.view:not([hidden])'); if(vis&&!vis.classList.contains('has-sub')) window.__rise(vis);
+  var vis=document.querySelector('.view:not([hidden])'); if(vis) window.__rise(vis);
   // 16:30 시계 (한국 시간)
   var ck=document.getElementById('clock');
   if(ck){
@@ -912,7 +930,7 @@ footer b{color:var(--fg)}
   }
   function stop(){ if(!ot.classList.contains('playing')) return; ot.classList.remove('playing'); ot.innerHTML=original; }
   ot.addEventListener('click',function(e){ e.preventDefault(); play(); });
-  if(sec){ sec.addEventListener('subshow',play); sec.addEventListener('subhide',stop); }
+  if(sec){ sec.addEventListener('subgo',play); }
   window.addEventListener('hashchange',function(){ if(view&&view.hidden) stop(); });
 })();
 
